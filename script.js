@@ -143,19 +143,23 @@ function bestGameEver() {
 // I like objects because of their flexible structure.
 const msg = {
     welcome: {
-        out: 'Welcome to the best game ever! Are you ready to play?',
+        out: 'Welcome to the best game ever! Do you know how to play? If not type "guide" to display a guide\n' +
+			'otherwise type "continue" so that we can begin!',
         no: 'Too bad, the adventure is upon us!',
         yes: 'Excellent! Let us begin.',
+		guide: 'This is a text based adventure game, that means the way to interact with the game\n' +
+				'is by typing commands. Once you type "continue" you can type "menu" and then "controls"\n' +
+				'to get a list of commands.',
     },
 	menu: {
 		main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
 		controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
 		'Menu:\nDisplays the menu\nExamine/x:\nExamines whatever you specify',
-		exiting: 'Exiting...'
+		exiting: 'Exiting...',
 	},
     scene1: {
         out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
-        out2: 'Well, you are in luck! Suddenly, a * has appeared before you.'
+        out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
     },
 	/* something is broken again
 	cart: {
@@ -184,10 +188,10 @@ const msg = {
 				'Lokir: Ulfric? The Jarl of Windhelm? You\'re the leader of the rebellion. But if\n' +
 				'they captured you... Oh gods, where are they taking us?\n' +
 				'Ralof: I don\'t know where we\'re going, but Sovngarde awaits.\n' +
-				'Lokir: No, this can\'t be happening. This isn\'t happening.\n'
-				'As you make your way to your destination, you enter the town of Helgen.\n'
-				'Its a small town up in the hills of Falkreath Hold'
-	}
+				'Lokir: No, this can\'t be happening. This isn\'t happening.\n' +
+				'As you make your way to your destination, you enter the town of Helgen.\n' +
+				'Its a small town up in the hills of Falkreath Hold',
+	},
 	*/
 };
 
