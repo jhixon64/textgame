@@ -22,11 +22,24 @@ function onEnter() {
         archive += input.value + '\n\n'; // Add input text to the archive
         
         // here we should output something according to the game logic
+		/*
 		if(isYes(input.value)) {
 			show(msg.welcome.yes);
 		} else {
 			show(msg.welcome.no);
 		}
+		*/
+		var inputString = input.value;
+		switch(inputString) {
+			case 'y':
+			case 'yes':
+				show(msg.welcome.yes);
+				break;
+			default:
+				show(msg.welcome.no);
+				break;
+		};
+		
         
         input.value = ''; // clear the input box
         updateView();        
@@ -74,6 +87,8 @@ const msg = {
 };
 
 //my idea of a player object based upon what i already know and what i see above this
+//breaks the program
+/*
 const player = {
 	skills: {
 		combat: {
@@ -98,7 +113,7 @@ const player = {
 			destruction: 15,
 			enchanting: 15,
 			illusion: 15,
-			restoration 15
+			restoration: 15
 		}
 	}
 	stats: {
@@ -112,12 +127,17 @@ const player = {
 		head: '',
 		torso: '',
 		hands: '',
-		feet: ''
+		feet: '',
+		left: '',
+		right: ''
 	},
 	enchantments: {
 		head: '',
 		torso: '',
 		hands: '',
-		feet: ''
+		feet: '',
+		left: '',
+		right: ''
 	}
-}
+};
+*/
