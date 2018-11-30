@@ -1,0 +1,24 @@
+BODY {
+	margin: 20px;
+	text-align: center;
+	font-family: monospace;
+}
+
+#gameOutput {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    width: 90%;
+    height: 60vh;
+}
+
+#userInput {
+    opacity: 0;
+}
+
+BUTTON {
+    font-family: monospace;
+}

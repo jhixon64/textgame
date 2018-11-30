@@ -1,0 +1,21 @@
+<html><head><title>Awesome Title</title>
+
+<!-- this meta tag is important to make mobile display decent -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="main.css" type="text/css">
+<script type="text/javascript" src="script.js" defer></script>
+
+</head>
+
+<body onload="bestGameEver()">
+
+<h1>Awesome Title</h1>
+
+<!-- This is the console. -->
+<textarea id="gameOutput"></textarea>
+
+<!-- This is the invisible input where the user can type things. -->
+<input type="text" id="userInput" onkeydown="checkKeyDown(event)" onkeyup="checkKeyUp(event)" onblur="this.focus()">
+
+</body></html>
