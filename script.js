@@ -1,6 +1,7 @@
 const view = document.getElementById('gameOutput');
 const input = document.getElementById('userInput');
 let archive = ''; // variable to store past console text
+var inMenu = false;
 
 function checkKeyUp(e) {
     const evt = e.keyCode || e.charCode;
@@ -29,7 +30,8 @@ function onEnter() {
 			show(msg.welcome.no);
 		}
 		*/
-		var inputString = input.value;
+		var inputString = input.value.toLowerCase();
+		/*
 		switch(inputString) {
 			case 'y':
 			case 'yes':
@@ -39,7 +41,35 @@ function onEnter() {
 				show(msg.welcome.no);
 				break;
 		};
+		*/
 		//test
+		//TODO: make a switch that has all common options for every room
+		//		somehow make it modular, meaning some options can change depending on the room
+		if(inMenu) {
+			switch(inputString) {
+				case 'c':
+				case 'controls':
+					show(msg.menu.controls);
+					break;
+				case 'e':
+				case 'exit':
+				default:
+					show(msg.menu.exiting);
+					inMenu = false;
+					break;
+			}
+		} else {
+			switch(inputString) {
+				case 'm':
+				case 'menu':
+					show(msg.menu.main);
+					inMenu = true;
+					break;
+			}
+		}
+		//show('recieved enter');
+		
+		
         
         input.value = ''; // clear the input box
         updateView();        
@@ -80,6 +110,11 @@ const msg = {
         no: 'Too bad, the adventure is upon us!',
         yes: 'Excellent! Let us begin.',
     },
+	menu: {
+		main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
+		controls: 'Controls are:\nyour keyboard ya dingus',
+		exiting: 'Exiting...'
+	},
     scene1: {
         out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
         out2: 'Well, you are in luck! Suddenly, a * has appeared before you.'

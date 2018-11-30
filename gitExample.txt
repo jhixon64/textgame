@@ -1,0 +1,158 @@
+*Powershell example:*
+PS C:\Users\Joseph\Desktop\TextGame> git init
+Initialized empty Git repository in C:/Users/Joseph/Desktop/TextGame/.git/
+PS C:\Users\Joseph\Desktop\TextGame> git add .
+PS C:\Users\Joseph\Desktop\TextGame> git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+PS C:\Users\Joseph\Desktop\TextGame> git add .
+PS C:\Users\Joseph\Desktop\TextGame> git commit -m "First commit from a file on my laptop. Added a switch and commented
+out player object because it causes the game to not play."
+[master (root-commit) aa466a1] First commit from a file on my laptop. Added a switch and commented out player object because it causes the game to not play.
+ 3 files changed, 188 insertions(+)
+ create mode 100644 TextGameStub.html
+ create mode 100644 main.css
+ create mode 100644 script.js
+PS C:\Users\Joseph\Desktop\TextGame> git remote add origin https://github.com/jhixon64/textgame.git
+PS C:\Users\Joseph\Desktop\TextGame> git remote -v
+origin  https://github.com/jhixon64/textgame.git (fetch)
+origin  https://github.com/jhixon64/textgame.git (push)
+PS C:\Users\Joseph\Desktop\TextGame> git push origin master
+To https://github.com/jhixon64/textgame.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/jhixon64/textgame.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+PS C:\Users\Joseph\Desktop\TextGame> git pull
+warning: no common commits
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 11 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (11/11), done.
+From https://github.com/jhixon64/textgame
+ * [new branch]      master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+PS C:\Users\Joseph\Desktop\TextGame> git pull remote master
+fatal: 'remote' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+PS C:\Users\Joseph\Desktop\TextGame> git pull textgame master
+fatal: 'textgame' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+PS C:\Users\Joseph\Desktop\TextGame> git pull https://github.com/jhixon64/textgame.git master
+From https://github.com/jhixon64/textgame
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+PS C:\Users\Joseph\Desktop\TextGame> git pull https://github.com/jhixon64/textgame.git master
+From https://github.com/jhixon64/textgame
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+PS C:\Users\Joseph\Desktop\TextGame> git pull origin master
+From https://github.com/jhixon64/textgame
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+PS C:\Users\Joseph\Desktop\TextGame> git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+PS C:\Users\Joseph\Desktop\TextGame> git pull master
+fatal: 'master' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+PS C:\Users\Joseph\Desktop\TextGame> git pull origin master
+From https://github.com/jhixon64/textgame
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+PS C:\Users\Joseph\Desktop\TextGame> git pull origin master --allow-unrelated-histories
+From https://github.com/jhixon64/textgame
+ * branch            master     -> FETCH_HEAD
+Auto-merging script.js
+CONFLICT (add/add): Merge conflict in script.js
+Auto-merging main.css
+CONFLICT (add/add): Merge conflict in main.css
+Auto-merging TextGameStub.html
+CONFLICT (add/add): Merge conflict in TextGameStub.html
+Automatic merge failed; fix conflicts and then commit the result.
+PS C:\Users\Joseph\Desktop\TextGame> git pull origin master
+error: Pulling is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+PS C:\Users\Joseph\Desktop\TextGame> git commit
+error: Committing is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+U       TextGameStub.html
+U       main.css
+U       script.js
+PS C:\Users\Joseph\Desktop\TextGame> git add TextGameStub.html
+warning: LF will be replaced by CRLF in TextGameStub.html.
+The file will have its original line endings in your working directory.
+PS C:\Users\Joseph\Desktop\TextGame>
+
+WORKING
+WORKING
+WORKING
+WORKING
+
+Please make sure you have the correct access rights
+and the repository exists.
+PS C:\Users\Joseph\Desktop\TextGame> git pull origin master
+From https://github.com/jhixon64/textgame
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+PS C:\Users\Joseph\Desktop\TextGame> git pull origin master --allow-unrelated-histories
+From https://github.com/jhixon64/textgame
+ * branch            master     -> FETCH_HEAD
+Auto-merging script.js
+CONFLICT (add/add): Merge conflict in script.js
+Auto-merging main.css
+CONFLICT (add/add): Merge conflict in main.css
+Auto-merging TextGameStub.html
+CONFLICT (add/add): Merge conflict in TextGameStub.html
+Automatic merge failed; fix conflicts and then commit the result.
+PS C:\Users\Joseph\Desktop\TextGame> git pull origin master
+error: Pulling is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+PS C:\Users\Joseph\Desktop\TextGame> git commit
+error: Committing is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+U       TextGameStub.html
+U       main.css
+U       script.js
+PS C:\Users\Joseph\Desktop\TextGame> git add TextGameStub.html
+warning: LF will be replaced by CRLF in TextGameStub.html.
+The file will have its original line endings in your working directory.
+PS C:\Users\Joseph\Desktop\TextGame>
