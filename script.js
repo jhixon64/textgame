@@ -2,6 +2,7 @@ const view = document.getElementById('gameOutput');
 const input = document.getElementById('userInput');
 let archive = ''; // variable to store past console text
 var inMenu = false;
+var startUp = true;
 
 function checkKeyUp(e) {
     const evt = e.keyCode || e.charCode;
@@ -31,6 +32,17 @@ function onEnter() {
 		}
 		*/
 		var inputString = input.value.toLowerCase();
+		if(startUp) {
+			switch(inputString) {
+				case 'guide':
+					show('a quick guide');
+					break;
+				case 'continue':
+					startUp = false;
+					show('message describing what to do first');
+					break;
+			}
+		}
 		/*
 		switch(inputString) {
 			case 'y':
@@ -59,12 +71,37 @@ function onEnter() {
 					break;
 			}
 		} else {
+			//room controls
 			switch(inputString) {
 				case 'm':
 				case 'menu':
 					show(msg.menu.main);
 					inMenu = true;
 					break;
+				case 'n':
+				case 'north':
+					//move player function maybe
+					show('moved north(not really)');
+					break;
+				case 's':
+				case 'south':
+					//move player function maybe
+					show('moved south (not really)');
+					break;
+				case 'e':
+				case 'east':
+					//move player function maybe
+					show('moved east (not really)');
+					break;
+				case 'w':
+				case 'west':
+					//move player function maybe
+					show('moved west (not really)');
+					break;
+				case 'x':
+				case 'examine':
+					//examine function
+					show('What would you like to examine?');
 			}
 		}
 		//show('recieved enter');
@@ -112,17 +149,49 @@ const msg = {
     },
 	menu: {
 		main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
-		controls: 'Controls are:\nyour keyboard ya dingus',
+		controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
+		'Menu:\nDisplays the menu\nExamine/x:\nExamines whatever you specify',
 		exiting: 'Exiting...'
 	},
     scene1: {
         out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
         out2: 'Well, you are in luck! Suddenly, a * has appeared before you.'
-    }
+    },
+	/* something is broken again
+	cart: {
+		out: 'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
+			'The air is cold and wet, you notice all you are wearing is rags\n' +
+			'There are three men in the cart with you. One is a blonde haired sturdy built nord.\n' +
+			'The second man is an imperial, much thinner and is looking down.' +
+			'The third is\'nt facing you so you cant make out the details of his face. He appears to be gagged\n' +
+			'The nord looks like he wants to talk to you.',
+		ralof1: 'Ralof: Hey, you. You\'re finally awake. You were trying to cross the border,\n' +
+				'right? Walked right into that Imperial ambush, same as us, and that\n' +
+				'thief over there.\n' +
+				'You look over and see that the imperial has raised his head. He looks angry\n' +
+				'Lokir: Damn you Stormcloaks. Skyrim was fine until you came along. Empire was\n' +
+				'nice and lazy. If they hadn\'t been looking for you, I could\'ve stolen\n'
+				'that horse and been half way to Hammerfell.\n' +
+				'He looks at you\n' +
+				'Lokir: You there. You and me -- we shouldn\'t be here. It\'s these\n' +
+				'Stormcloaks the Empire wants.\n' +
+				'Ralof: We\'re all brothers and sisters in binds now, thief.\n' +
+				'Imperial Soldier: Shut up back there!\n' +
+				'Lokir looks at the gagged man\n' +
+				'Lokir: And what\'s wrong with him?\n' +
+				'Ralof: Watch your tongue! You\'re speaking to Ulfric Stormcloak,\n' +
+				'the true High King.\n' +
+				'Lokir: Ulfric? The Jarl of Windhelm? You\'re the leader of the rebellion. But if\n' +
+				'they captured you... Oh gods, where are they taking us?\n' +
+				'Ralof: I don\'t know where we\'re going, but Sovngarde awaits.\n' +
+				'Lokir: No, this can\'t be happening. This isn\'t happening.\n'
+				'As you make your way to your destination, you enter the town of Helgen.\n'
+				'Its a small town up in the hills of Falkreath Hold'
+	}
+	*/
 };
 
 //my idea of a player object based upon what i already know and what i see above this
-//breaks the program
 /*
 const player = {
 	skills: {
