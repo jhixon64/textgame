@@ -39,7 +39,7 @@ function onEnter() {
 				show(msg.welcome.no);
 				break;
 		};
-		
+		//test
         
         input.value = ''; // clear the input box
         updateView();        
