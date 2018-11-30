@@ -115,7 +115,7 @@ const player = {
 			illusion: 15,
 			restoration: 15
 		}
-	}
+	}, // I added a comma here, which may have been the issue -Bradley
 	stats: {
 		health: 100,
 		stamina: 100,
