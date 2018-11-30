@@ -1,24 +1,69 @@
 BODY {
-	margin: 20px;
+	margin: 50px;
 	text-align: center;
-	font-family: monospace;
+	font-family: Garamond, serif;
+	background-color: black;
+	color: white;
+	background-image: url('images/mapbg.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.bodyContent {
+	display: flex;
+	padding: 10px;
 }
 
 #gameOutput {
-    margin: 20px;
+    margin: 30px;
     padding: 10px;
-    border: 1px solid gray;
-    background-color: black;
+	border: 0;
+	border-radius: 20px;
+    background-color: #111;
     color: white;
-    font-size: 14px;
+    font-size: 18px;
     width: 90%;
     height: 60vh;
+	resize: none;
+	font-family: Garamond, serif;
+	opacity: .6;
 }
 
 #userInput {
     opacity: 0;
 }
 
-BUTTON {
-    font-family: monospace;
+.container {
+	width: 50%;
+}
+
+.box {
+	margin: 30px;
+    padding: 10px;
+	border: 0px;
+	border-radius: 20px;
+	color: white;
+	background-color: #111;
+	opacity: .6;
+	text-align: center;
+	display: inline-block;
+}
+
+.boxTitle {
+	font-size: 24px;
+	margin: 10px;
+}
+
+.inventory {
+	border-collapse: collapse;
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
+.inventory TD {
+	width: 50px;
+	height: 50px;
+	border: 1px solid gray;
 }
