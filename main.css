@@ -1,7 +1,17 @@
+@font-face {
+	font-family: 'Skyrim Medium';
+	src: url('fonts/Typo3-Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: Skyrim;
+	src: url('fonts/typo3Normal.ttf') format('truetype');
+}
+
+
 BODY {
 	margin: 50px;
 	text-align: center;
-	font-family: Garamond, serif;
+	font-family: Skyrim, Garamond, serif;
 	background-color: black;
 	color: white;
 	background-image: url('images/mapbg.png');
@@ -22,11 +32,11 @@ BODY {
 	border-radius: 20px;
     background-color: #111;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     width: 90%;
     height: 60vh;
 	resize: none;
-	font-family: Garamond, serif;
+	font-family: Skyrim, Garamond, serif;
 	opacity: .6;
 }
 

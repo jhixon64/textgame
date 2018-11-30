@@ -161,7 +161,6 @@ const msg = {
         out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
         out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
     },
-	/* something is broken again
 	cart: {
 		out: 'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 			'The air is cold and wet, you notice all you are wearing is rags\n' +
@@ -174,7 +173,7 @@ const msg = {
 				'thief over there.\n' +
 				'You look over and see that the imperial has raised his head. He looks angry\n' +
 				'Lokir: Damn you Stormcloaks. Skyrim was fine until you came along. Empire was\n' +
-				'nice and lazy. If they hadn\'t been looking for you, I could\'ve stolen\n'
+				'nice and lazy. If they hadn\'t been looking for you, I could\'ve stolen\n' +
 				'that horse and been half way to Hammerfell.\n' +
 				'He looks at you\n' +
 				'Lokir: You there. You and me -- we shouldn\'t be here. It\'s these\n' +
@@ -192,11 +191,10 @@ const msg = {
 				'As you make your way to your destination, you enter the town of Helgen.\n' +
 				'Its a small town up in the hills of Falkreath Hold',
 	},
-	*/
+
 };
 
 //my idea of a player object based upon what i already know and what i see above this
-/*
 const player = {
 	skills: {
 		combat: {
@@ -223,7 +221,7 @@ const player = {
 			illusion: 15,
 			restoration: 15
 		}
-	}, // I added a comma here, which may have been the issue -Bradley
+	},
 	stats: {
 		health: 100,
 		stamina: 100,
@@ -248,4 +246,3 @@ const player = {
 		right: ''
 	}
 };
-*/
