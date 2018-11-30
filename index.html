@@ -12,10 +12,46 @@
 
 <h1>Awesome Title</h1>
 
-<!-- This is the console. -->
-<textarea id="gameOutput"></textarea>
+<div class="bodyContent">
 
-<!-- This is the invisible input where the user can type things. -->
+	<!-- Left half of screen -->
+	<div class="container">
+
+		<!-- Console -->
+		<textarea id="gameOutput"></textarea>
+
+	</div>
+
+	<!-- Right half of screen -->
+	<div class="container">
+
+		<div class="box">
+			<div class="boxTitle">Inventory</div>
+			<table class="inventory">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Invisible input where the user can type things. -->
 <input type="text" id="userInput" onkeydown="checkKeyDown(event)" onkeyup="checkKeyUp(event)" onblur="this.focus()">
 
 </body></html>
