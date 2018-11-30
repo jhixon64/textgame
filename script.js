@@ -132,9 +132,18 @@ function isYes(inputText) {
     return inputText.toLowerCase() == 'y' || inputText.toLowerCase() == 'yes';
 }
 
+function updateStatsDisplay() {
+	
+	document.getElementById('health').innerHTML = player.stats.health;
+	document.getElementById('stamina').innerHTML = player.stats.stamina;
+	document.getElementById('magicka').innerHTML = player.stats.magicka;
+	document.getElementById('attack').innerHTML = player.stats.attack;
+	document.getElementById('defense').innerHTML = player.stats.defense;
+}
 
 function bestGameEver() {
     document.getElementById('userInput').focus();
+	updateStatsDisplay();
     show(msg.welcome.out);
 }
 
