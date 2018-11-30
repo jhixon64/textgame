@@ -17,35 +17,85 @@
 	<!-- Left half of screen -->
 	<div class="container">
 
-		<!-- Console -->
-		<textarea id="gameOutput"></textarea>
+		<div class="box">
+			<div class="boxTitle">Console</div>
+			<!-- Console -->
+			<textarea id="gameOutput" class="fullwidth"></textarea>
+		</div>
 
 	</div>
 
 	<!-- Right half of screen -->
 	<div class="container">
 
-		<div class="box">
-			<div class="boxTitle">Inventory</div>
+		<div class="box inline-block">
+			<div class="boxTitle">Map</div>
+			<div id="map" class="map"></div>
+		</div>
+		
+		<div class="box inline-block">
+			<div class="boxTitle">Viewport</div>
+			<div id="view" class="view"></div>
+		</div>
+		
+		<div class="box inline-block">
+			<div class="boxTitle">Bag</div>
 			<table class="inventory">
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
+				</tr>
+				<tr>
 					<td></td>
 					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
 		</div>
+		
+		<div class="box inline-block">
+			<div class="boxTitle">Stats</div>
+			<div id="stats" class="stats">
+				<table class="statsTable">
+					<tr>
+						<td>Health</td>
+						<td id="health"></td>
+					</tr>
+					<tr>
+						<td>Stamina</td>
+						<td id="stamina"></td>
+					</tr>
+					<tr>
+						<td>Magicka</td>
+						<td id="magicka"></td>
+					</tr>
+					<tr>
+						<td>Attack</td>
+						<td id="attack"></td>
+					</tr>
+					<tr>
+						<td>Defense</td>
+						<td id="defense"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
 
 	</div>
 

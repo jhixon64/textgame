@@ -2,6 +2,7 @@
 	font-family: 'Skyrim Medium';
 	src: url('fonts/Typo3-Medium.ttf') format('truetype');
 }
+
 @font-face {
 	font-family: Skyrim;
 	src: url('fonts/typo3Normal.ttf') format('truetype');
@@ -26,38 +27,46 @@ BODY {
 }
 
 #gameOutput {
-    margin: 30px;
-    padding: 10px;
 	border: 0;
-	border-radius: 20px;
-    background-color: #111;
-    color: white;
-    font-size: 16px;
-    width: 90%;
-    height: 60vh;
+	background-color: #111;
+	color: white;
+	font-size: 16px;
+	width: 100%;
+	height: 60vh;
 	resize: none;
 	font-family: Skyrim, Garamond, serif;
-	opacity: .6;
+}
+
+.fullwidth {
+	width: 100%;
+}
+
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
 }
 
 #userInput {
-    opacity: 0;
+	opacity: 0;
 }
 
 .container {
-	width: 50%;
+	width: 50vw;
+	display: block;
 }
 
 .box {
-	margin: 30px;
-    padding: 10px;
+	margin: 20px;
+	padding: 20px;
 	border: 0px;
 	border-radius: 20px;
 	color: white;
 	background-color: #111;
 	opacity: .6;
 	text-align: center;
-	display: inline-block;
 }
 
 .boxTitle {
@@ -67,13 +76,39 @@ BODY {
 
 .inventory {
 	border-collapse: collapse;
-	display: block;
-	margin: auto;
-	text-align: center;
 }
 
 .inventory TD {
 	width: 50px;
 	height: 50px;
 	border: 1px solid gray;
+}
+
+.map {
+	border: 1px solid gray;
+	height: 200px;
+	width: 300px;
+}
+
+.view {
+	border: 1px solid gray;
+	height: 200px;
+	width: 200px;
+}
+
+.stats {
+	border: 1px solid gray;
+	height: 300px;
+	width: 400px;
+	text-align: left;
+}
+
+.statsTable {
+	border: 0;
+	margin: 10px;
+}
+
+.statsTable TD {
+	border: 0;
+	padding-right: 10px;
 }
