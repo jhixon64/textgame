@@ -3,6 +3,7 @@ const input = document.getElementById('userInput');
 let archive = ''; // variable to store past console text
 var inMenu = false;
 var startUp = true;
+var deaths = 0;
 
 function checkKeyUp(e) {
     const evt = e.keyCode || e.charCode;
@@ -35,14 +36,19 @@ function onEnter() {
 		if(startUp) {
 			switch(inputString) {
 				case 'guide':
-					show('a quick guide');
+					show(msg.welcome.guide);
 					break;
 				case 'continue':
 					startUp = false;
-					show('message describing what to do first');
+					show(msg.cart.out);
 					break;
 			}
 		}
+		/*
+		if(player.stats.health == 0) {
+			healthOut();
+		}
+		*/
 		/*
 		switch(inputString) {
 			case 'y':
@@ -57,51 +63,58 @@ function onEnter() {
 		//test
 		//TODO: make a switch that has all common options for every room
 		//		somehow make it modular, meaning some options can change depending on the room
-		if(inMenu) {
-			switch(inputString) {
-				case 'c':
-				case 'controls':
-					show(msg.menu.controls);
-					break;
-				case 'e':
-				case 'exit':
-				default:
-					show(msg.menu.exiting);
-					inMenu = false;
-					break;
-			}
-		} else {
-			//room controls
-			switch(inputString) {
-				case 'm':
-				case 'menu':
-					show(msg.menu.main);
-					inMenu = true;
-					break;
-				case 'n':
-				case 'north':
-					//move player function maybe
-					show('moved north(not really)');
-					break;
-				case 's':
-				case 'south':
-					//move player function maybe
-					show('moved south (not really)');
-					break;
-				case 'e':
-				case 'east':
-					//move player function maybe
-					show('moved east (not really)');
-					break;
-				case 'w':
-				case 'west':
-					//move player function maybe
-					show('moved west (not really)');
-					break;
-				case 'x':
-				case 'examine':
-					//examine function
-					show('What would you like to examine?');
+		if(!startUp) {
+			if(inMenu) {
+				//menu controls
+				switch(inputString) {
+					case 'c':
+					case 'controls':
+						show(msg.menu.controls);
+						break;
+					case 'e':
+					case 'exit':
+					default:
+						show(msg.menu.exiting);
+						inMenu = false;
+						break;
+				}
+			} else {
+				//room controls
+				switch(inputString) {
+					case 'm':
+					case 'menu':
+						show(msg.menu.main);
+						inMenu = true;
+						break;
+					case 'n':
+					case 'north':
+						//move player function maybe
+						show('moved north(not really)');
+						break;
+					case 's':
+					case 'south':
+						//move player function maybe
+						show('moved south (not really)');
+						break;
+					case 'e':
+					case 'east':
+						//move player function maybe
+						show('moved east (not really)');
+						break;
+					case 'w':
+					case 'west':
+						//move player function maybe
+						show('moved west (not really)');
+						break;
+					case 'x':
+					case 'examine':
+						//examine function
+						show('What would you like to examine?');
+						break;
+					default: //this activates when it shouldnt, i think its because it uses the input after i continue
+						show('Invalid command!');
+						break;
+				}
 			}
 		}
 		//show('recieved enter');
@@ -141,6 +154,31 @@ function updateStatsDisplay() {
 	document.getElementById('defense').innerHTML = player.stats.defense;
 }
 
+//call this when the player dies
+/*
+function healthOut() {
+	var valid = false;
+	deaths++;
+	show('You died! Better luck next time!\nRestart from last save? y/n');
+	while(!valid) {
+		switch(userInput) {
+			case 'y':
+			case 'yes':
+				show('Loading save...');
+				//load save
+				valid = true;
+				break;
+			case 'n':
+			case 'no':
+				show('Ok just quit out of the window or something gosh');
+				//maybe save the game
+				valid = true;
+				break;
+			default:
+				show('Invalid input');
+	}
+}
+*/
 
 function bestGameEver() {
     document.getElementById('userInput').focus();
@@ -153,8 +191,8 @@ function bestGameEver() {
 // I like objects because of their flexible structure.
 const msg = {
     welcome: {
-        out: 'Welcome to the best game ever! Do you know how to play? If not type "guide" to display a guide\n' +
-			'otherwise type "continue" so that we can begin!',
+        out: 'Welcome to the best game ever! Do you know how to play?\n' +
+			'If not type "guide" to display a guide, otherwise type "continue" so that we can begin!',
         no: 'Too bad, the adventure is upon us!',
         yes: 'Excellent! Let us begin.',
 		guide: 'This is a text based adventure game, that means the way to interact with the game\n' +
@@ -164,13 +202,15 @@ const msg = {
 	menu: {
 		main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
 		controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
-		'Menu:\nDisplays the menu\nExamine/x:\nExamines whatever you specify',
+		'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
 		exiting: 'Exiting...',
+		cheat: 'Enabling cheats',
 	},
     scene1: {
         out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
         out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
     },
+	
 	cart: {
 		out: 'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 			'The air is cold and wet, you notice all you are wearing is rags\n' +
@@ -200,6 +240,15 @@ const msg = {
 				'Lokir: No, this can\'t be happening. This isn\'t happening.\n' +
 				'As you make your way to your destination, you enter the town of Helgen.\n' +
 				'Its a small town up in the hills of Falkreath Hold',
+	},
+	ridingIntoHelgen: {
+		
+		out:	'You have finally made it to Helgen. The townspeople look on in silence as you\n' +
+				'and the other prisoners are carted to the town center',
+		examine:'Surrounding you are several Imperial soldiers armed with swords, bows, and magic.\n' +
+				'Making a run for it does not seem like a good option currently.',
+		run:	'You jump out of the cart and run past a few guards; however, before you make it\n' +
+				'5 steps further an arrow takes you out and you go down without any fight.',
 	},
 
 };
