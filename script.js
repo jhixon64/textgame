@@ -121,7 +121,7 @@ function onEnter() {
 					break;
 				case 'continue':
 					startUp = false;
-					show(msg.1.out);
+					show(msg.cart.out);
 					break;
 				default:
 					show('Invalid command! S');
@@ -221,7 +221,7 @@ const msg = {
         out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
     },
 	
-	1: {
+	cart: {
 		out: 'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 			'The air is cold and wet, you notice all you are wearing is rags\n' +
 			'There are three men in the cart with you. One is a blonde haired sturdy built nord.\n' +
