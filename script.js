@@ -1,9 +1,11 @@
 const view = document.getElementById('gameOutput');
 const input = document.getElementById('userInput');
 let archive = ''; // variable to store past console text
+var inputString;
 var inMenu = false;
 var startUp = true;
 var deaths = 0;
+var room = 0; //maybe use this to keep track of what room im in, so that i can easily make a formula or something
 
 function checkKeyUp(e) {
     const evt = e.keyCode || e.charCode;
@@ -23,6 +25,7 @@ function checkKeyDown(e) {
 function onEnter() {
     if (input.value != '') {
         archive += input.value + '\n\n'; // Add input text to the archive
+		inputString = input.value.toLowerCase();
         
         // here we should output something according to the game logic
 		/*
@@ -32,18 +35,8 @@ function onEnter() {
 			show(msg.welcome.no);
 		}
 		*/
-		var inputString = input.value.toLowerCase();
-		if(startUp) {
-			switch(inputString) {
-				case 'guide':
-					show(msg.welcome.guide);
-					break;
-				case 'continue':
-					startUp = false;
-					show(msg.cart.out);
-					break;
-			}
-		}
+		
+		
 		/*
 		if(player.stats.health == 0) {
 			healthOut();
@@ -111,10 +104,27 @@ function onEnter() {
 						//examine function
 						show('What would you like to examine?');
 						break;
-					default: //this activates when it shouldnt, i think its because it uses the input after i continue
+					case 'talk':
+						show(msg.cart.ralof1);
+						break;
+					default:
 						show('Invalid command!');
 						break;
 				}
+			}
+		}
+		
+		if(startUp) {
+			switch(inputString) {
+				case 'guide':
+					show(msg.welcome.guide);
+					break;
+				case 'continue':
+					startUp = false;
+					show(msg.1.out);
+					break;
+				default:
+					show('Invalid command! S');
 			}
 		}
 		//show('recieved enter');
@@ -196,8 +206,8 @@ const msg = {
         no: 'Too bad, the adventure is upon us!',
         yes: 'Excellent! Let us begin.',
 		guide: 'This is a text based adventure game, that means the way to interact with the game\n' +
-				'is by typing commands. Once you type "continue" you can type "menu" and then "controls"\n' +
-				'to get a list of commands.',
+				'is by typing commands. Once you type "continue" you can type "menu" and then\n' +
+				'"controls" to get a list of commands.',
     },
 	menu: {
 		main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
@@ -211,12 +221,13 @@ const msg = {
         out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
     },
 	
-	cart: {
+	1: {
 		out: 'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 			'The air is cold and wet, you notice all you are wearing is rags\n' +
 			'There are three men in the cart with you. One is a blonde haired sturdy built nord.\n' +
-			'The second man is an imperial, much thinner and is looking down.' +
-			'The third is\'nt facing you so you cant make out the details of his face. He appears to be gagged\n' +
+			'The second man is an imperial, much thinner and is looking down.\n' +
+			'The third is\'nt facing you so you cant make out the details of his face.\n' +
+			'He appears to be gagged.\n' +
 			'The nord looks like he wants to talk to you.',
 		ralof1: 'Ralof: Hey, you. You\'re finally awake. You were trying to cross the border,\n' +
 				'right? Walked right into that Imperial ambush, same as us, and that\n' +
