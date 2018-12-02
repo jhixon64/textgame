@@ -312,11 +312,11 @@ const msg = {
 				' around you. You take damage from the environment. The way to the tower is still open.',
 		toTower:'You run to the tower, dodging fire and stone as it flies around you.',
 	},
-	tower:
+	tower: {
 		out:'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
 			'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get to safety.\n' +
 			'Ulfric: ',
-
+	},
 };
 
 //my idea of a player object based upon what i already know and what i see above this
