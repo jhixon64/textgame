@@ -12,15 +12,17 @@
 
 <h1>Awesome Title</h1>
 
+<!-- Invisible input where the user can type things. -->
+<input type="text" id="userInput" onkeydown="checkKeyDown(event)" onkeyup="checkKeyUp(event)">
+
 <div class="bodyContent">
 
 	<!-- Left half of screen -->
-	<div class="container">
+	<div class="consoleContainer halfwidth">
 
 		<div class="box">
-			<div class="boxTitle">Console</div>
 			<!-- Console -->
-			<textarea id="gameOutput" class="fullwidth"></textarea>
+			<textarea id="gameOutput" class="fullwidth" readonly onfocus="document.getElementById('userInput').focus()"></textarea>
 		</div>
 
 	</div>
@@ -29,18 +31,82 @@
 	<div class="container">
 
 		<div class="box inline-block">
-			<div class="boxTitle">Map</div>
-			<div id="map" class="map"></div>
+            <div class="tabField">
+                <span id="viewportTab" class="tabTitle tabBorder activeTab" onclick="showViewport()">VIEWPORT</span>
+                <span id="mapTab" class="tabTitle" onclick="showMap()">MAP</span>
+            </div>
+			
+            <div id="viewport" class="viewport"><br>[viewport]</div>
+			<div id="map" class="map"><br>[map]</div>
+            
+           
+            <div class="tabField">
+                <span id="statsTab" class="tabTitle tabBorder activeTab" onclick="showStats()">STATS</span>
+                <span id="skillsTab" class="tabTitle" onclick="showSkills()">SKILLS</span>
+            </div>
+			<div id="stats" class="stats">
+				<table class="statsTable">
+					<tr>
+						<td>Health</td>
+						<td id="health"></td>
+					</tr>
+					<tr>
+						<td>Stamina</td>
+						<td id="stamina"></td>
+					</tr>
+					<tr>
+						<td>Magicka</td>
+						<td id="magicka"></td>
+					</tr>
+					<tr>
+						<td>Attack</td>
+						<td id="attack"></td>
+					</tr>
+					<tr>
+						<td>Defense</td>
+						<td id="defense"></td>
+					</tr>
+				</table>
+			</div>
+            <div id="skills" class="stats hidden">
+				<table class="statsTable">
+                    <tr>
+						<td><b>Combat</b></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Archery</td>
+						<td id="archery"></td>
+					</tr>
+					<tr>
+						<td>Block</td>
+						<td id="block"></td>
+					</tr>
+					<tr>
+						<td>Heavy Armor</td>
+						<td id="heavyArmor"></td>
+					</tr>
+					<tr>
+						<td>One-handed</td>
+						<td id="oneHanded"></td>
+					</tr>
+					<tr>
+						<td>Smithing</td>
+						<td id="smithing"></td>
+					</tr>
+                    <tr>
+						<td>Two-handed</td>
+						<td id="twoHanded"></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		
-		<div class="box inline-block">
-			<div class="boxTitle">Viewport</div>
-			<div id="view" class="view"></div>
-		</div>
-		
-		<div class="box inline-block">
-			<div class="boxTitle">Bag</div>
-			<table class="inventory">
+        <div class="box inline-block">
+			<div class="tabField">
+                <span class="tabTitle activeTab center">BAG</span>
+            </div>
+			<table class="bag">
 				<tr>
 					<td id="bag0"></td>
 					<td id="bag1"></td>
@@ -67,41 +133,10 @@
 				</tr>
 			</table>
 		</div>
-		
-		<div class="box inline-block">
-			<div class="boxTitle">Stats</div>
-			<div id="stats" class="stats">
-				<table class="statsTable">
-					<tr>
-						<td>Health</td>
-						<td id="health"></td>
-					</tr>
-					<tr>
-						<td>Stamina</td>
-						<td id="stamina"></td>
-					</tr>
-					<tr>
-						<td>Magicka</td>
-						<td id="magicka"></td>
-					</tr>
-					<tr>
-						<td>Attack</td>
-						<td id="attack"></td>
-					</tr>
-					<tr>
-						<td>Defense</td>
-						<td id="defense"></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-
 
 	</div>
 
 </div>
 
-<!-- Invisible input where the user can type things. -->
-<input type="text" id="userInput" onkeydown="checkKeyDown(event)" onkeyup="checkKeyUp(event)" onblur="this.focus()">
 
 </body></html>
