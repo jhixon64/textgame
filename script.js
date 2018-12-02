@@ -167,6 +167,33 @@ function isYes(inputText) {
     return inputText.toLowerCase() == 'y' || inputText.toLowerCase() == 'yes';
 }
 
+function showViewport() {
+    document.getElementById('map').style.display = 'none';
+    document.getElementById('viewport').style.display = 'block';
+    document.getElementById('mapTab').classList.remove('activeTab');
+    document.getElementById('viewportTab').classList.add('activeTab');
+}
+
+function showMap() {
+    document.getElementById('viewport').style.display = 'none';
+    document.getElementById('map').style.display = 'block';
+    document.getElementById('mapTab').classList.add('activeTab');
+    document.getElementById('viewportTab').classList.remove('activeTab');
+}
+
+function showStats() {
+    document.getElementById('skills').style.display = 'none';
+    document.getElementById('stats').style.display = 'block';
+    document.getElementById('skillsTab').classList.remove('activeTab');
+    document.getElementById('statsTab').classList.add('activeTab');
+}
+
+function showSkills() {
+    document.getElementById('stats').style.display = 'none';
+    document.getElementById('skills').style.display = 'block';
+    document.getElementById('skillsTab').classList.add('activeTab');
+    document.getElementById('statsTab').classList.remove('activeTab');
+}
 
 function updateStatsDisplay() {	
 	document.getElementById('health').innerHTML = player.stats.health;
@@ -174,6 +201,13 @@ function updateStatsDisplay() {
 	document.getElementById('magicka').innerHTML = player.stats.magicka;
 	document.getElementById('attack').innerHTML = player.stats.attack;
 	document.getElementById('defense').innerHTML = player.stats.defense;
+    
+    document.getElementById('archery').innerHTML = player.skills.combat.archery;
+    document.getElementById('block').innerHTML = player.skills.combat.block;
+    document.getElementById('heavyArmor').innerHTML = player.skills.combat.heavyArmor;
+    document.getElementById('oneHanded').innerHTML = player.skills.combat.oneHanded;
+    document.getElementById('smithing').innerHTML = player.skills.combat.smithing;
+    document.getElementById('twoHanded').innerHTML = player.skills.combat.twoHanded;
 }
 
 //call this when the player dies

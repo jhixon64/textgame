@@ -9,7 +9,7 @@
 }
 
 BODY {
-	margin: 50px;
+	margin: 20px;
 	text-align: center;
 	font-family: Skyrim, Garamond, serif;
 	background-color: black;
@@ -17,7 +17,7 @@ BODY {
 	background-image: url('images/mapbg.png');
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: cover;
 }
 
 .bodyContent {
@@ -29,11 +29,15 @@ BODY {
 	border: 0;
 	background-color: #111;
 	color: white;
-	font-size: 16px;
+	font-size: 14px;
 	width: 100%;
 	height: 60vh;
 	resize: none;
 	font-family: Skyrim, Garamond, serif;
+}
+
+.halfwidth {
+    width: 50%;
 }
 
 .fullwidth {
@@ -52,13 +56,26 @@ BODY {
 	display: none;
 }
 
+.center {
+    text-align: center;
+    display: block;
+}
+
 #userInput {
 	opacity: 0;
 }
 
-.container {
+.consoleContainer {
 	width: 50vw;
+    height: 80vh;
 	display: block;
+}
+
+.container {
+    max-width: 50vw;
+	display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .box {
@@ -68,40 +85,63 @@ BODY {
 	border-radius: 20px;
 	color: white;
 	background-color: #111;
-	opacity: .6;
+	opacity: .8;
 	text-align: center;
 }
 
 .boxTitle {
-	font-size: 24px;
+	font-size: 18px;
 	margin: 0px 10px 10px 10px;
+    color: yellow;
 }
 
-.inventory {
+.tabField {
+    text-align: left;
+    background-color: gray;
+    padding: 5px;
+}
+
+.tabTitle {
+    font-size: 12px;
+    font-weight: 600;
+    cursor: hand;
+    padding: 0px 5px 0px 0px;
+    color: #000;
+}
+
+.tabBorder {
+    border-right: 1px solid black;
+}
+
+.activeTab {
+    color: #FFF;
+}
+
+.bag {
 	border-collapse: collapse;
 }
 
-.inventory TD {
+.bag TD {
 	width: 50px;
 	height: 50px;
 	border: 1px solid gray;
+}
+
+.viewport {
+	border: 1px solid gray;
+	height: 200px;
+	width: 300px;
 }
 
 .map {
 	border: 1px solid gray;
 	height: 200px;
 	width: 300px;
-}
-
-.view {
-	border: 1px solid gray;
-	height: 200px;
-	width: 200px;
+    display: none;
 }
 
 .stats {
 	border: 1px solid gray;
-	height: 200px;
 	width: 300px;
 	text-align: left;
 }
@@ -114,4 +154,5 @@ BODY {
 .statsTable TD {
 	border: 0;
 	padding-right: 10px;
+    font-size: 12px;
 }
