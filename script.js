@@ -6,6 +6,10 @@ var inMenu = false;
 var startUp = true;
 var deaths = 0;
 var room = 0; //maybe use this to keep track of what room im in, so that i can easily make a formula or something
+var userName = 'Bob';
+
+//basically i want to be able to somehow use variables to change what object im going to be using
+//that way i wont have to hard code what i want to happen every time a command is entered
 
 function checkKeyUp(e) {
     const evt = e.keyCode || e.charCode;
@@ -101,8 +105,7 @@ function onEnter() {
 						break;
 					case 'x':
 					case 'examine':
-						//examine function
-						show('What would you like to examine?');
+						examine();
 						break;
 					case 'talk':
 						show(msg.cart.ralof1);
@@ -147,6 +150,15 @@ function updateView() {
 function show(output) {
     archive += output + '\n\n';
     updateView();
+}
+
+//my idea with these two functions is to pass in what the user inputted and use that to know what message to display
+function examine() {
+	//show(msg);
+}
+
+function interact() {
+	//using what was passed in to display a message
 }
 
 
@@ -199,6 +211,8 @@ function bestGameEver() {
 
 // You could store messages in a JS object like this, or just an array.
 // I like objects because of their flexible structure.
+
+//i eventually want to add images to change for each room
 const msg = {
     welcome: {
         out: 'Welcome to the best game ever! Do you know how to play?\n' +
@@ -222,7 +236,7 @@ const msg = {
     },
 	
 	cart: {
-		out: 'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
+		out:'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 			'The air is cold and wet, you notice all you are wearing is rags\n' +
 			'There are three men in the cart with you. One is a blonde haired sturdy built nord.\n' +
 			'The second man is an imperial, much thinner and is looking down.\n' +
@@ -251,16 +265,57 @@ const msg = {
 				'Lokir: No, this can\'t be happening. This isn\'t happening.\n' +
 				'As you make your way to your destination, you enter the town of Helgen.\n' +
 				'Its a small town up in the hills of Falkreath Hold',
+		examine:'You can see a town approaching in the distance.\n' +
+				'If you wait for a few minutes then you\'ll soon be carted inside the walls',
+		wait:	'Waiting...',
 	},
 	ridingIntoHelgen: {
 		
 		out:	'You have finally made it to Helgen. The townspeople look on in silence as you\n' +
 				'and the other prisoners are carted to the town center',
 		examine:'Surrounding you are several Imperial soldiers armed with swords, bows, and magic.\n' +
-				'Making a run for it does not seem like a good option currently.',
+				'Making a run for it does not seem like a good option currently.' +
+				'Looks like all you can do now is wait for the end of the line.',
 		run:	'You jump out of the cart and run past a few guards; however, before you make it\n' +
 				'5 steps further an arrow takes you out and you go down without any fight.',
+		wait:	'Waiting...',
 	},
+	endOfTheLine: {
+		out:	'Lokir: Wait... why are we stopping?\n' +
+				'Ralof: Why do you think? End of the line.\n' +
+				'Your cart stops in the town square where you see several things.\n' +
+				'An imperial legate stands next to a large man in a dark hood carrying a large axe.\n' +
+				'Soldier: Step out of the cart prisoners. Your final destination awaits.\n' +
+				'The soldier starts to read off the names of the prisoners and filing them into lines' +
+				'in front of the legate.\n' +
+				'Soldier: Ralof of Riverwood, Lokir of Rorikstead...\n' +
+				'Lokir: No! You cant do this! Im innocent! Im not a rebel!\n' +
+				'Lokir makes a run for it, pushing past a few soldiers standing guard. He makes it about ' +
+				'halfway out of the square before getting hit by an arrow and going down with a large thud.\n' +
+				'Legate Rikke: Anyone else feel like running?\n' +
+				'Silence.\n' +
+				'The soldier then looks at you.\n' +
+				'Soldier: Wait... Who are you? What is your name?\n' +
+				'Enter your name:',
+		execution:	'Soldier: Well, ' + userName + ', walk over there with the others\n' +
+					'In the distance, a sound unheard for thousands of years emerges from the mountains.\n'
+					'Nobody seems to take much notice. The sound faintly echos off.\n' +
+					'You walk over and watch as each prisoner is slowly called up, eliminated, and tossed to the side.\n' +
+					'Next: ' + userName + '!\n' +
+					'You walk up, they force you down into a kneeling position with your head positioned on the block. ' +
+					'The man raises his axe and prepares to slam it down.\n' +
+					'Suddenly a ferocious roar pushes everyone to the ground.\n' +
+					'The sky begins to rain fire and lightning. Prisoners and guards alike scatter in all directions.',
+		examine:'You look up to see several prisoners run into a tower. There does not seem to be any other ways to go.' +
+				' Do you run towards them?',
+		other:	'You try to move in a different direction, but are stopped by large pieces of the buildings collapsing' +
+				' around you. You take damage from the environment. The way to the tower is still open.',
+		toTower:'You run to the tower, dodging fire and stone as it flies around you.',
+	},
+	tower:
+		out:'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
+			'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get to safety.\n' +
+			'Ulfric: ',
 
 };
 
