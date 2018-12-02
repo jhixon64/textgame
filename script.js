@@ -122,7 +122,7 @@ function onEnter() {
 				case 'guide':
 					show(msg.welcome.guide);
 					break;
-				case 'continue':
+				case 'begin':
 					startUp = false;
 					show(msg.cart.out);
 					break;
@@ -216,11 +216,11 @@ function bestGameEver() {
 const msg = {
     welcome: {
         out: 'Welcome to the best game ever! Do you know how to play?\n' +
-			'If not type "guide" to display a guide, otherwise type "continue" so that we can begin!',
+			'If not type "guide" to display a guide, otherwise type "begin" so that we can begin!',
         no: 'Too bad, the adventure is upon us!',
         yes: 'Excellent! Let us begin.',
 		guide: 'This is a text based adventure game, that means the way to interact with the game\n' +
-				'is by typing commands. Once you type "continue" you can type "menu" and then\n' +
+				'is by typing commands. Once you type "begin" you can type "menu" and then\n' +
 				'"controls" to get a list of commands.',
     },
 	menu: {
@@ -297,11 +297,11 @@ const msg = {
 				'The soldier then looks at you.\n' +
 				'Soldier: Wait... Who are you? What is your name?\n' +
 				'Enter your name:',
-		execution:	'Soldier: Well, ' + userName + ', walk over there with the others\n' +
-					'In the distance, a sound unheard for thousands of years emerges from the mountains.\n'
+		execution:	'Soldier: Well, ' + ', walk over there with the others\n' +
+					'In the distance, a sound unheard for thousands of years emerges from the mountains.\n' +
 					'Nobody seems to take much notice. The sound faintly echos off.\n' +
 					'You walk over and watch as each prisoner is slowly called up, eliminated, and tossed to the side.\n' +
-					'Next: ' + userName + '!\n' +
+					'Next: ' + '!\n' +
 					'You walk up, they force you down into a kneeling position with your head positioned on the block. ' +
 					'The man raises his axe and prepares to slam it down.\n' +
 					'Suddenly a ferocious roar pushes everyone to the ground.\n' +
@@ -312,11 +312,13 @@ const msg = {
 				' around you. You take damage from the environment. The way to the tower is still open.',
 		toTower:'You run to the tower, dodging fire and stone as it flies around you.',
 	},
+	/*
 	tower: {
 		out:'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
 			'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get to safety.\n' +
 			'Ulfric: ',
 	},
+	*/
 };
 
 //my idea of a player object based upon what i already know and what i see above this
