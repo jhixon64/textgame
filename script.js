@@ -150,6 +150,7 @@ function interact() {
 }
 
 //this method might be the solution because i can use the room number to change what output to give for the same commands
+/*
 function input(input, room) {
 	switch(input) {
 		case 'x':
@@ -169,7 +170,7 @@ function input(input, room) {
 			}//examine room switch
 	}
 }
-
+*/
 
 // This might come in handy for quickly evaluating yes or no questions
 function isYes(inputText) {
