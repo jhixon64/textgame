@@ -46,18 +46,6 @@ function onEnter() {
 			healthOut();
 		}
 		*/
-		/*
-		switch(inputString) {
-			case 'y':
-			case 'yes':
-				show(msg.welcome.yes);
-				break;
-			default:
-				show(msg.welcome.no);
-				break;
-		};
-		*/
-		//test
 		//TODO: make a switch that has all common options for every room
 		//		somehow make it modular, meaning some options can change depending on the room
 		if(!startUp) {
@@ -331,14 +319,15 @@ const msg = {
 				'The soldier then looks at you.\n' +
 				'Soldier: Wait... Who are you? What is your name?\n' +
 				'Enter your name:',
-		execution:	'Soldier: Well, ' + ', walk over there with the others\n' +
+		execution:	'Soldier: Well, ' + userName + ', walk over there with the others\n' +
 					'In the distance, a sound unheard for thousands of years emerges from the mountains.\n' +
 					'Nobody seems to take much notice. The sound faintly echos off.\n' +
 					'You walk over and watch as each prisoner is slowly called up, eliminated, and tossed to the side.\n' +
-					'Next: ' + '!\n' +
+					'Next: ' + userName + '!\n' +
 					'You walk up, they force you down into a kneeling position with your head positioned on the block. ' +
 					'The man raises his axe and prepares to slam it down.\n' +
 					'Suddenly a ferocious roar pushes everyone to the ground.\n' +
+					'Dragon!\n' +
 					'The sky begins to rain fire and lightning. Prisoners and guards alike scatter in all directions.',
 		examine:'You look up to see several prisoners run into a tower. There does not seem to be any other ways to go.' +
 				' Do you run towards them?',
@@ -346,13 +335,35 @@ const msg = {
 				' around you. You take damage from the environment. The way to the tower is still open.',
 		toTower:'You run to the tower, dodging fire and stone as it flies around you.',
 	},
-	/*
+	
 	tower: {
 		out:'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
-			'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get to safety.\n' +
-			'Ulfric: ',
+			'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get' +
+			'out of here.\n' +
+			'Ulfric: There is a passage under this keep. If we make a run for the other side of town...\n' +
+			'Crash! You hear screaming and a deafening roar from above.\n' +
+			'Ralof: Gods! Its found us!',
+		examine:'You look around the room, theres not much to hide under or behind. Looks like running is ' +
+				'once again the only option.',
+		run:'You start running towards the door but then a huge boulder falls down from outside, blocking ' +
+			'the exit. You look around and see some stairs. Looks like the only way out is upstairs where ' +
+			'the beast is. Only way to go is up.',
+		up:	'You bolt up the stairs, ready to fight or sneak around whatever you find with your bound hands.',
+		back:	'The room is exactly how you left it. Door still blocked and nothing to use.',
+		examine2:	'There doesn\'t seem to be anything useful around. The only way out is upstairs.',
 	},
-	*/
+	
+	towerUp: {
+		out:'Once you reach the next floor there is nothing but a few dead bodies and rubble scattered ' +
+			'across the room. You hear shouting and screams from the large hole that must have been created' +
+			' just recently.\n' +
+			'Ralof: Theres nowhere to go! What do we do now?',
+		examine:'The room is trashed with no time to look for anything useful. There are no ways out of the' +
+				' room other than back down... or out the hole by jumping? There is a building right next ' +
+				'to the tower with a soft looking hay covered roof.',
+		jump:	'You jump out the hole and onto the roof. The roof suddenly crashes in and you fall through.',
+	},
+	//building
 };
 
 //my idea of a player object based upon what i already know and what i see above this
