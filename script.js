@@ -149,6 +149,27 @@ function interact() {
 	//using what was passed in to display a message
 }
 
+//this method might be the solution because i can use the room number to change what output to give for the same commands
+function input(input, room) {
+	switch(input) {
+		case 'x':
+		case 'examine':
+		//what i want to do is just say something like show(msg.(room number).examine); so i dont have to assign
+		//each room a number manually. that would save a lot of work
+			switch(room) {
+				case 0:
+					show(msg.cart.examine);
+					break;
+				case 1:
+					show(msg.ridingIntoHelgen.examine);
+					break;
+				case 2:
+					show(msg.endOfTheLine.examine);
+					break;
+			}//examine room switch
+	}
+}
+
 
 // This might come in handy for quickly evaluating yes or no questions
 function isYes(inputText) {
