@@ -112,7 +112,7 @@ function onEnter() {
 					break;
 				case 'begin':
 					startUp = false;
-					show(msg.cart.out);
+					msg[0].exe.begin;
 					break;
 				default:
 					show('Invalid command! S');
@@ -145,8 +145,8 @@ function examine() {
 	//show(msg);
 }
 
-function interact() {
-	//using what was passed in to display a message
+function interact(userInput) {
+	show(msg[room][userInput]);
 }
 
 //this method might be the solution because i can use the room number to change what output to give for the same commands
@@ -256,28 +256,47 @@ function bestGameEver() {
 // You could store messages in a JS object like this, or just an array.
 // I like objects because of their flexible structure.
 
-//i eventually want to add images to change for each room
-const msg = {
-    welcome: {
-        out: 'Welcome to the best game ever! Do you know how to play?\n' +
-			'If not type "guide" to display a guide, otherwise type "begin" so that we can begin!',
-        no: 'Too bad, the adventure is upon us!',
-        yes: 'Excellent! Let us begin.',
-		guide: 'This is a text based adventure game, that means the way to interact with the game\n' +
-				'is by typing commands. Once you type "begin" you can type "menu" and then\n' +
-				'"controls" to get a list of commands.',
-    },
-	menu: {
-		main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
-		controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
-		'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
-		exiting: 'Exiting...',
-		cheat: 'Enabling cheats',
+const msg = [
+	{ 
+		name: 'Welcome',
+		img: 'images/welcomeIMG.png',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
+		opt: {
+			out: 'Welcome to the best game ever! Do you know how to play?\n' +
+				'If not type "guide" to display a guide, otherwise type "begin" so that we can begin!',
+			no: 'Too bad, the adventure is upon us!',
+			yes: 'Excellent! Let us begin.',
+			guide: 'This is a text based adventure game, that means the way to interact with the game\n' +
+					'is by typing commands. Once you type "begin" you can type "menu" and then\n' +
+					'"controls" to get a list of commands.',
+			begin: '',
+		},
+		exe: {
+			begin: function begin() {
+				console.log('Exe begin function');
+			},
+		}
+	},
+	{
+		name: 'Menu',
+		img: 'images/menuIMG.png',
+		opt: {
+			main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
+			controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
+			'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
+			exiting: 'Exiting...',
+			cheat: 'Enabling cheats',
+		},
 	},
     scene1: {
         out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
         out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
-    },
+	},
 	
 	cart: {
 		out:'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
@@ -301,7 +320,7 @@ const msg = {
 				'Imperial Soldier: Shut up back there!\n' +
 				'Lokir looks at the gagged man\n' +
 				'Lokir: And what\'s wrong with him?\n' +
-				'Ralof: Watch your tongue! You\'re speaking to Ulfric Stormcloak,\n' +
+				'Ralof: Watch your tongue! You\'re speaking to Ulfric Stormcloak, ' +
 				'the true High King.\n' +
 				'Lokir: Ulfric? The Jarl of Windhelm? You\'re the leader of the rebellion. But if\n' +
 				'they captured you... Oh gods, where are they taking us?\n' +
@@ -386,7 +405,7 @@ const msg = {
 		jump:	'You jump out the hole and onto the roof. The roof suddenly crashes in and you fall through.',
 	},
 	//building
-};
+];
 
 //my idea of a player object based upon what i already know and what i see above this
 const player = {
