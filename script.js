@@ -48,9 +48,9 @@ function onEnter() {
 		 */
 		/*
 		if(isYes(input.value)) {
-			show(msg.welcome.yes);
+			show(msg[0].opt.yes);
 		} else {
-			show(msg.welcome.no);
+			show(msg[0].opt.no);
 		}
 		*/
 		
@@ -69,12 +69,12 @@ function onEnter() {
 				switch(inputString) {
 					case 'c':
 					case 'controls':
-						show(msg.menu.controls);
+						show(msg[1].opt.controls);
 						break;
 					case 'e':
 					case 'exit':
 					default:
-						show(msg.menu.exiting);
+						show(msg[1].opt.exiting);
 						inMenu = false;
 						break;
 				}
@@ -83,7 +83,7 @@ function onEnter() {
 				switch(inputString) {
 					case 'm':
 					case 'menu':
-						show(msg.menu.main);
+						show(msg[1].opt.main);
 						inMenu = true;
 						break;
 					case 'n':
@@ -111,7 +111,7 @@ function onEnter() {
 						examine();
 						break;
 					case 'talk':
-						show(msg.cart.ralof1);
+						show(msg[3].opt.ralof1);
 						break;
 					default:
 						show('Invalid command!');
@@ -123,14 +123,14 @@ function onEnter() {
 		if(startUp) {
 			switch(inputString) {
 				case 'guide':
-					show(msg[0].opts.guide);
+					show(msg[0].opt.guide);
 					break;
 				case 'begin':
 					startUp = false;
-					msg[0].begin();
+					msg[0][inputString](); // equivalent to msg[0].begin();
 					break;
 				default:
-					show('Invalid command! S');
+					show('Invalid command!');
 			}
 		}
 		//show('recieved enter');
@@ -316,7 +316,24 @@ const rms = [
 		},
 	},
 	/*
-	{
+	{ // 1
+		name: 'Menu',
+		img: 'menu.png',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
+		opt: {
+			main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
+			controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
+			'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
+			exiting: 'Exiting...',
+			cheat: 'Enabling cheats',
+		},
+	},
+	{ // 2
 		name: 'Scene 1',
 		img: '',
 		dir: {
@@ -331,7 +348,7 @@ const rms = [
 		},
 	},
 	*/
-	{
+	{ // 3
 		name: 'Cart',
 		img: '',
 		dir: {
@@ -378,7 +395,7 @@ const rms = [
 			show(rms[room].msg.ralof1);
 		},
 	},
-	{
+	{ // 4
 		name: 'Riding Into Helgen',
 		img: '',
 		dir: {
@@ -398,7 +415,7 @@ const rms = [
 			wait:	'Waiting...',
 		},
 	},
-	{
+	{ // 5
 		name: 'End of the Line',
 		img: '',
 		dir: {
@@ -441,7 +458,7 @@ const rms = [
 			toTower:'You run to the tower, dodging fire and stone as it flies around you.',
 		}
 	},
-	{
+	{ // 6
 		name: 'Tower',
 		img: '',
 		dir: {
@@ -467,7 +484,7 @@ const rms = [
 			examine2:	'There doesn\'t seem to be anything useful around. The only way out is upstairs.',
 		}
 	},
-	{
+	{ // 7
 		name: 'Tower Up',
 		img: '',
 		dir: {
