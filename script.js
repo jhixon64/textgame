@@ -205,19 +205,20 @@ function showSkills() {
     document.getElementById('statsTab').classList.remove('activeTab');
 }
 
-function updateStatsDisplay() {	
-	document.getElementById('health').innerHTML = player.stats.health;
-	document.getElementById('stamina').innerHTML = player.stats.stamina;
-	document.getElementById('magicka').innerHTML = player.stats.magicka;
-	document.getElementById('attack').innerHTML = player.stats.attack;
-	document.getElementById('defense').innerHTML = player.stats.defense;
-    
-    document.getElementById('archery').innerHTML = player.skills.combat.archery;
-    document.getElementById('block').innerHTML = player.skills.combat.block;
-    document.getElementById('heavyArmor').innerHTML = player.skills.combat.heavyArmor;
-    document.getElementById('oneHanded').innerHTML = player.skills.combat.oneHanded;
-    document.getElementById('smithing').innerHTML = player.skills.combat.smithing;
-    document.getElementById('twoHanded').innerHTML = player.skills.combat.twoHanded;
+function updateStatsDisplay() {
+	
+	for (var stat in player.stats) {
+		document.getElementById(stat).innerHTML = player.stats[stat];
+		document.getElementById(stat + 'Bar').style.width = player.stats[stat] + '%';
+		document.getElementById(stat + 'BarDown').style.width = 100-player.stats[stat] + '%';
+	}
+	
+	for (var combatSkill in player.skills.combat) {
+		document.getElementById(combatSkill).innerHTML = player.skills.combat[combatSkill];
+		document.getElementById(combatSkill + 'Bar').style.width = player.skills.combat[combatSkill] + '%';
+		document.getElementById(combatSkill + 'BarDown').style.width = 100-player.skills.combat[combatSkill] + '%';
+	}
+
 }
 
 //call this when the player dies

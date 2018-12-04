@@ -130,20 +130,17 @@ BODY {
 }
 
 .viewport {
-	// border: 1px solid gray;
 	height: 200px;
 	width: 300px;
 }
 
 .map {
-	// border: 1px solid gray;
 	height: 200px;
 	width: 300px;
     display: none;
 }
 
 .stats {
-	// border: 1px solid gray;
 	width: 300px;
 	text-align: left;
 }
@@ -151,10 +148,30 @@ BODY {
 .statsTable {
 	border: 0;
 	margin: 10px;
+	width: 100%;
 }
 
 .statsTable TD {
 	border: 0;
 	padding-right: 10px;
     font-size: 12px;
+}
+
+.statBarCell {
+	width: 100%
+}
+
+.statBarContainer {
+	width: 100%;
+	height: 2px;
+	display: flex;
+}
+
+.statBar {
+	background: #0F0;
+	height: 100%;
+}
+
+.statBarDown {
+	border-top: 2px solid #F00;
 }
