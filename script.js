@@ -34,9 +34,9 @@ function onEnter() {
         // here we should output something according to the game logic
 		/*
 		if(isYes(input.value)) {
-			show(msg.welcome.yes);
+			show(msg[0].opt.yes);
 		} else {
-			show(msg.welcome.no);
+			show(msg[0].opt.no);
 		}
 		*/
 		
@@ -54,12 +54,12 @@ function onEnter() {
 				switch(inputString) {
 					case 'c':
 					case 'controls':
-						show(msg.menu.controls);
+						show(msg[1].opt.controls);
 						break;
 					case 'e':
 					case 'exit':
 					default:
-						show(msg.menu.exiting);
+						show(msg[1].opt.exiting);
 						inMenu = false;
 						break;
 				}
@@ -68,7 +68,7 @@ function onEnter() {
 				switch(inputString) {
 					case 'm':
 					case 'menu':
-						show(msg.menu.main);
+						show(msg[1].opt.main);
 						inMenu = true;
 						break;
 					case 'n':
@@ -96,7 +96,7 @@ function onEnter() {
 						examine();
 						break;
 					case 'talk':
-						show(msg.cart.ralof1);
+						show(msg[3].opt.ralof1);
 						break;
 					default:
 						show('Invalid command!');
@@ -108,14 +108,14 @@ function onEnter() {
 		if(startUp) {
 			switch(inputString) {
 				case 'guide':
-					show(msg[0].opts.guide);
+					show(msg[0].opt.guide);
 					break;
 				case 'begin':
 					startUp = false;
-					msg[0].begin();
+					msg[0][inputString](); // equivalent to msg[0].begin();
 					break;
 				default:
-					show('Invalid command! S');
+					show('Invalid command!');
 			}
 		}
 		//show('recieved enter');
@@ -144,7 +144,7 @@ function examine() {
 }
 
 function interact(userInput) {
-	show(msg[room][userInput]);
+	show(msg[room].opt[userInput]);
 }
 
 //this method might be the solution because i can use the room number to change what output to give for the same commands
@@ -253,7 +253,7 @@ function bestGameEver() {
 
 
 const msg = [
-	{ 
+	{ // 0
 		name: 'Welcome',
 		img: 'welcome.png',
 		dir: {
@@ -276,7 +276,7 @@ const msg = [
 			console.log('Begin function has been called');
 		},
 	},
-	{
+	{ // 1
 		name: 'Menu',
 		img: 'menu.png',
 		dir: {
@@ -293,7 +293,7 @@ const msg = [
 			cheat: 'Enabling cheats',
 		},
 	},
-	{
+	{ // 2
 		name: 'Scene 1',
 		img: '',
 		dir: {
@@ -307,7 +307,7 @@ const msg = [
 			out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
 		},
 	},
-	{
+	{ // 3
 		name: 'Cart',
 		img: '',
 		dir: {
@@ -351,7 +351,7 @@ const msg = [
 			wait:	'Waiting...',
 		}
 	},
-	{
+	{ // 4
 		name: 'Riding Into Helgen',
 		img: '',
 		dir: {
@@ -371,7 +371,7 @@ const msg = [
 			wait:	'Waiting...',
 		},
 	},
-	{
+	{ // 5
 		name: 'End of the Line',
 		img: '',
 		dir: {
@@ -414,7 +414,7 @@ const msg = [
 			toTower:'You run to the tower, dodging fire and stone as it flies around you.',
 		}
 	},
-	{
+	{ // 6
 		name: 'Tower',
 		img: '',
 		dir: {
@@ -440,7 +440,7 @@ const msg = [
 			examine2:	'There doesn\'t seem to be anything useful around. The only way out is upstairs.',
 		}
 	},
-	{
+	{ // 7
 		name: 'Tower Up',
 		img: '',
 		dir: {
