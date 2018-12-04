@@ -112,7 +112,7 @@ function onEnter() {
 					break;
 				case 'begin':
 					startUp = false;
-					msg[0].exe.begin;
+					msg[0].begin();
 					break;
 				default:
 					show('Invalid command! S');
@@ -120,9 +120,7 @@ function onEnter() {
 		}
 		//show('recieved enter');
 		
-		
-        
-        input.value = ''; // clear the input box
+		 input.value = ''; // clear the input box
         updateView();        
     }
 }
@@ -192,23 +190,23 @@ function showMap() {
 }
 
 function showStats() {
-    document.getElementById('skills').style.display = 'none';
+    document.getElementById('combat').style.display = 'none';
     document.getElementById('stats').style.display = 'block';
-    document.getElementById('skillsTab').classList.remove('activeTab');
+    document.getElementById('combatTab').classList.remove('activeTab');
     document.getElementById('statsTab').classList.add('activeTab');
 }
 
 function showSkills() {
     document.getElementById('stats').style.display = 'none';
-    document.getElementById('skills').style.display = 'block';
-    document.getElementById('skillsTab').classList.add('activeTab');
+    document.getElementById('combat').style.display = 'block';
+    document.getElementById('combatTab').classList.add('activeTab');
     document.getElementById('statsTab').classList.remove('activeTab');
 }
 
 function updateStatsDisplay() {
 	
 	for (var stat in player.stats) {
-		document.getElementById(stat).innerHTML = player.stats[stat];
+		document.getElementById(stat).innerHTML = player.stats[stat]; // must use [brackets] with variables
 		document.getElementById(stat + 'Bar').style.width = player.stats[stat] + '%';
 		document.getElementById(stat + 'BarDown').style.width = 100-player.stats[stat] + '%';
 	}
@@ -254,9 +252,6 @@ function bestGameEver() {
 }
 
 
-// You could store messages in a JS object like this, or just an array.
-// I like objects because of their flexible structure.
-
 const msg = [
 	{ 
 		name: 'Welcome',
@@ -277,15 +272,19 @@ const msg = [
 					'"controls" to get a list of commands.',
 			begin: '',
 		},
-		exe: {
-			begin: function begin() {
-				console.log('Exe begin function');
-			},
+		begin() {
+			console.log('Begin function has been called');
 		},
 	},
 	{
 		name: 'Menu',
 		img: 'menu.png',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
 		opt: {
 			main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
 			controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
@@ -297,6 +296,12 @@ const msg = [
 	{
 		name: 'Scene 1',
 		img: '',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
 		opt: {
 			out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
 			out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
@@ -305,6 +310,12 @@ const msg = [
 	{
 		name: 'Cart',
 		img: '',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
 		opt: {
 			out:'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 				'The air is cold and wet, you notice all you are wearing is rags\n' +
@@ -343,6 +354,12 @@ const msg = [
 	{
 		name: 'Riding Into Helgen',
 		img: '',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
 		opt: {		
 			out:	'You have finally made it to Helgen. The townspeople look on in silence as you\n' +
 					'and the other prisoners are carted to the town center',
@@ -357,6 +374,12 @@ const msg = [
 	{
 		name: 'End of the Line',
 		img: '',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
 		opt: {
 			out:	'Lokir: Wait... why are we stopping?\n' +
 				'Ralof: Why do you think? End of the line.\n' +
@@ -394,6 +417,12 @@ const msg = [
 	{
 		name: 'Tower',
 		img: '',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
 		opt: {			
 			out:'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
 				'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get' +
@@ -414,6 +443,12 @@ const msg = [
 	{
 		name: 'Tower Up',
 		img: '',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
 		opt: {
 			
 			out:'Once you reach the next floor there is nothing but a few dead bodies and rubble scattered ' +
