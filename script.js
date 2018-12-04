@@ -280,7 +280,7 @@ const msg = [
 			begin: function begin() {
 				console.log('Exe begin function');
 			},
-		}
+		},
 	},
 	{
 		name: 'Menu',
