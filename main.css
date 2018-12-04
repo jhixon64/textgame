@@ -87,6 +87,7 @@ BODY {
 	background-color: #111;
 	opacity: .8;
 	text-align: center;
+	min-width: 100px;
 }
 
 .boxTitle {
@@ -118,17 +119,6 @@ BODY {
     color: #FFF;
 }
 
-.bag {
-	border-collapse: collapse;
-    margin: 10px;
-}
-
-.bag TD {
-	width: 50px;
-	height: 50px;
-	border: 1px solid gray;
-}
-
 .viewport {
 	height: 200px;
 	width: 300px;
@@ -138,6 +128,16 @@ BODY {
 	height: 200px;
 	width: 300px;
     display: none;
+}
+
+.bag {
+	font-size: 12px;
+	list-style-type: none;
+	padding: 0px;
+}
+
+.bag > LI {
+	margin-left: 0px;
 }
 
 .stats {
