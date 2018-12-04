@@ -5,11 +5,10 @@ var inputString;
 var inMenu = false;
 var startUp = true;
 var deaths = 0;
-var room = 0; //maybe use this to keep track of what room im in, so that i can easily make a formula or something
+var room = 1; //maybe use this to keep track of what room im in, so that i can easily make a formula or something
 var userName = 'Bob';
-
-//basically i want to be able to somehow use variables to change what object im going to be using
-//that way i wont have to hard code what i want to happen every time a command is entered
+var hopefullyUndefined;
+var maybeUndefined = undefined;
 
 function checkKeyUp(e) {
     const evt = e.keyCode || e.charCode;
@@ -32,6 +31,21 @@ function onEnter() {
 		inputString = input.value.toLowerCase();
         
         // here we should output something according to the game logic
+		
+		//if inputted a valid command
+		if (isValid(rms[room].msg[inputString])) {
+			show(rms[room].msg[inputString]);
+			rms[room]['inputString'];
+		} else {
+			show('Input was invalid, try again.');
+		}
+		/* 
+		show(hopefullyUndefined + ' undefined?');
+		
+		show(maybeUndefined + ' undefined!');
+		
+		show(undefined + ' undefined.');
+		 */
 		/*
 		if(isYes(input.value)) {
 			show(msg.welcome.yes);
@@ -48,6 +62,7 @@ function onEnter() {
 		*/
 		//TODO: make a switch that has all common options for every room
 		//		somehow make it modular, meaning some options can change depending on the room
+		/*
 		if(!startUp) {
 			if(inMenu) {
 				//menu controls
@@ -119,6 +134,7 @@ function onEnter() {
 			}
 		}
 		//show('recieved enter');
+		*/
 		
 		 input.value = ''; // clear the input box
         updateView();        
@@ -138,13 +154,17 @@ function show(output) {
     updateView();
 }
 
+function isValid(userInput) {
+	return !(userInput == undefined);
+}
+
 //my idea with these two functions is to pass in what the user inputted and use that to know what message to display
 function examine() {
 	//show(msg);
 }
 
 function interact(userInput) {
-	show(msg[room][userInput]);
+	show(rms[room].msg[userInput]);
 }
 
 //this method might be the solution because i can use the room number to change what output to give for the same commands
@@ -248,11 +268,28 @@ function healthOut() {
 function bestGameEver() {
     document.getElementById('userInput').focus();
 	updateStatsDisplay();
-    show(msg[0].opt.out);
+    show(rms[1].msg.out);
 }
 
 
-const msg = [
+const rms = [
+	{
+		name: 'Menu',
+		img: 'menu.png',
+		dir: {
+			n: false,
+			s: false,
+			e: false,
+			w: false,
+		},
+		msg: {
+			main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
+			controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
+			'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
+			exiting: 'Exiting...',
+			cheat: 'Enabling cheats',
+		},
+	},
 	{ 
 		name: 'Welcome',
 		img: 'welcome.png',
@@ -262,7 +299,7 @@ const msg = [
 			e: false,
 			w: false,
 		},
-		opt: {
+		msg: {
 			out: 'Welcome to the best game ever! Do you know how to play?\n' +
 				'If not type "guide" to display a guide, otherwise type "begin" so that we can begin!',
 			no: 'Too bad, the adventure is upon us!',
@@ -274,25 +311,11 @@ const msg = [
 		},
 		begin() {
 			console.log('Begin function has been called');
+			room++;
+			show(rms[room].msg.out);
 		},
 	},
-	{
-		name: 'Menu',
-		img: 'menu.png',
-		dir: {
-			n: false,
-			s: false,
-			e: false,
-			w: false,
-		},
-		opt: {
-			main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
-			controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
-			'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
-			exiting: 'Exiting...',
-			cheat: 'Enabling cheats',
-		},
-	},
+	/*
 	{
 		name: 'Scene 1',
 		img: '',
@@ -302,11 +325,12 @@ const msg = [
 			e: false,
 			w: false,
 		},
-		opt: {
+		msg: {
 			out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
 			out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
 		},
 	},
+	*/
 	{
 		name: 'Cart',
 		img: '',
@@ -316,7 +340,7 @@ const msg = [
 			e: false,
 			w: false,
 		},
-		opt: {
+		msg: {
 			out:'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 				'The air is cold and wet, you notice all you are wearing is rags\n' +
 				'There are three men in the cart with you. One is a blonde haired sturdy built nord.\n' +
@@ -349,7 +373,10 @@ const msg = [
 			examine:'You can see a town approaching in the distance.\n' +
 					'If you wait for a few minutes then you\'ll soon be carted inside the walls',
 			wait:	'Waiting...',
-		}
+		},
+		talk() {
+			show(rms[room].msg.ralof1);
+		},
 	},
 	{
 		name: 'Riding Into Helgen',
@@ -360,7 +387,7 @@ const msg = [
 			e: false,
 			w: false,
 		},
-		opt: {		
+		msg: {		
 			out:	'You have finally made it to Helgen. The townspeople look on in silence as you\n' +
 					'and the other prisoners are carted to the town center',
 			examine:'Surrounding you are several Imperial soldiers armed with swords, bows, and magic.\n' +
@@ -380,7 +407,7 @@ const msg = [
 			e: false,
 			w: false,
 		},
-		opt: {
+		msg: {
 			out:	'Lokir: Wait... why are we stopping?\n' +
 				'Ralof: Why do you think? End of the line.\n' +
 				'Your cart stops in the town square where you see several things.\n' +
@@ -423,7 +450,7 @@ const msg = [
 			e: false,
 			w: false,
 		},
-		opt: {			
+		msg: {			
 			out:'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
 				'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get' +
 				'out of here.\n' +
@@ -449,7 +476,7 @@ const msg = [
 			e: false,
 			w: false,
 		},
-		opt: {
+		msg: {
 			
 			out:'Once you reach the next floor there is nothing but a few dead bodies and rubble scattered ' +
 				'across the room. You hear shouting and screams from the large hole that must have been created' +
