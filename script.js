@@ -6,7 +6,7 @@ var inMenu = false;
 var startUp = true;
 var deaths = 0;
 var room = 1; //maybe use this to keep track of what room im in, so that i can easily make a formula or something
-var userName = 'Bob';
+let userName = 'Bob';
 var enterName = false;
 
 function checkKeyUp(e) {
@@ -31,11 +31,8 @@ function onEnter() {
         
         // here we should output something according to the game logic
 		if (enterName) {
-			rms[room].nameEntered();
-			/* userName = inputString;
-			show(userName);
+			rms[room].nameEntered(input.value);
 			enterName = false;
-			showMsg('execution', room); */
 		} else
 		//if inputted a valid command
 		if (isValid(rms[room][inputString])) {
@@ -79,7 +76,6 @@ function updateView() {
     view.value = archive + input.value + '|';
     view.scrollTop = view.scrollHeight;
 }
-
 
 // This is a quick function to show something to the user
 function show(output) {
@@ -144,6 +140,42 @@ function updateStatsDisplay() {
 
 }
 
+function addToBag(item) {
+	var newItem = document.createElement('LI');
+	newItem.innerHTML = item;
+	document.getElementById('bagList').appendChild(newItem);
+}
+
+function removeFromBag(item) {	
+	const bag = document.getElementById('bagList');
+	for (let i = 0; i < bag.childNodes.length; i++) {
+		if (bag.childNodes[i].innerHTML == item) {
+			bag.removeChild(bag.childNodes[i]);
+			return;
+		}
+	}
+}
+
+/*
+function addLife() {
+  userLives++;
+  var heartIMG = document.createElement("img");
+  heartIMG.src = lifeURL;
+  heartIMG.className = 'heart';
+
+  var heart = document.createElement("LI");
+  heart.appendChild(heartIMG);
+  document.getElementById('lives').appendChild(heart);
+}
+
+
+function loseLife() {
+  userLives--;
+  const lives = document.getElementById('lives');
+  lives.removeChild(lives.childNodes[0]);
+}
+*/
+
 //call this when the player dies
 /*
 function healthOut() {
@@ -175,7 +207,6 @@ function bestGameEver() {
 	updateStatsDisplay();
     show(rms[1].msg.out);
 }
-
 
 const rms = [
 	{//0
@@ -217,7 +248,6 @@ const rms = [
 					' to do in the message displayed.',
 		},
 		begin() {
-			console.log('Begin function has been called');
 			room++;
 			//show(rms[room].msg.begin);
 		},
@@ -228,22 +258,6 @@ const rms = [
 			//set room
 		}
 	},
-	/*
-	{ // 2
-		name: 'Scene 1',
-		img: '',
-		dir: {
-			n: false,
-			s: false,
-			e: false,
-			w: false,
-		},
-		msg: {
-			out1: 'You wake up to find yourself in a place with no things. What do you wish you had right now?',
-			out2: 'Well, you are in luck! Suddenly, a * has appeared before you.',
-		},
-	},
-	*/
 	{ // 2
 		name: 'Cart',
 		img: '',
