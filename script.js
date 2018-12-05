@@ -156,26 +156,6 @@ function removeFromBag(item) {
 	}
 }
 
-/*
-function addLife() {
-  userLives++;
-  var heartIMG = document.createElement("img");
-  heartIMG.src = lifeURL;
-  heartIMG.className = 'heart';
-
-  var heart = document.createElement("LI");
-  heart.appendChild(heartIMG);
-  document.getElementById('lives').appendChild(heart);
-}
-
-
-function loseLife() {
-  userLives--;
-  const lives = document.getElementById('lives');
-  lives.removeChild(lives.childNodes[0]);
-}
-*/
-
 //call this when the player dies
 /*
 function healthOut() {
