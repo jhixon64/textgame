@@ -7,8 +7,7 @@ var startUp = true;
 var deaths = 0;
 var room = 1; //maybe use this to keep track of what room im in, so that i can easily make a formula or something
 var userName = 'Bob';
-var hopefullyUndefined;
-var maybeUndefined = undefined;
+var enterName = false;
 
 function checkKeyUp(e) {
     const evt = e.keyCode || e.charCode;
@@ -31,111 +30,45 @@ function onEnter() {
 		inputString = input.value.toLowerCase();
         
         // here we should output something according to the game logic
-		
+		if (enterName) {
+			rms[room].nameEntered();
+			/* userName = inputString;
+			show(userName);
+			enterName = false;
+			showMsg('execution', room); */
+		} else
 		//if inputted a valid command
-		if (isValid(rms[room].msg[inputString])) {
-			show(rms[room].msg[inputString]);
-			rms[room]['inputString'];
+		if (isValid(rms[room][inputString])) {
+			//show(isValid(rms[room][inputString]));
+			rms[room][inputString]();
+			if (isValid(rms[room].msg[inputString])) {
+				showMsg(inputString, room);
+			}
+		} else if (isValid(rms[room].msg[inputString])) {
+			showMsg(inputString, room);
 		} else {
 			show('Input was invalid, try again.');
 		}
-		/* 
-		show(hopefullyUndefined + ' undefined?');
 		
-		show(maybeUndefined + ' undefined!');
 		
-		show(undefined + ' undefined.');
-		 */
 		/*
-		if(isYes(input.value)) {
-			show(msg[0].opt.yes);
-		} else {
-			show(msg[0].opt.no);
+		switch(inputString) {
+			case 'menu':
+				rms[0][inputString]();
+				break;
+			default:
+				if (isValid(rms[room][inputString])) {
+					rms[room][inputString]();
+				} else {
+					show('Input was invalid, try again.');
+				}
 		}
 		*/
-		
-		
 		/*
 		if(player.stats.health == 0) {
 			healthOut();
 		}
 		*/
-		//TODO: make a switch that has all common options for every room
-		//		somehow make it modular, meaning some options can change depending on the room
-		/*
-		if(!startUp) {
-			if(inMenu) {
-				//menu controls
-				switch(inputString) {
-					case 'c':
-					case 'controls':
-						show(msg[1].opt.controls);
-						break;
-					case 'e':
-					case 'exit':
-					default:
-						show(msg[1].opt.exiting);
-						inMenu = false;
-						break;
-				}
-			} else {
-				//room controls
-				switch(inputString) {
-					case 'm':
-					case 'menu':
-						show(msg[1].opt.main);
-						inMenu = true;
-						break;
-					case 'n':
-					case 'north':
-						//move player function maybe
-						show('moved north(not really)');
-						break;
-					case 's':
-					case 'south':
-						//move player function maybe
-						show('moved south (not really)');
-						break;
-					case 'e':
-					case 'east':
-						//move player function maybe
-						show('moved east (not really)');
-						break;
-					case 'w':
-					case 'west':
-						//move player function maybe
-						show('moved west (not really)');
-						break;
-					case 'x':
-					case 'examine':
-						examine();
-						break;
-					case 'talk':
-						show(msg[3].opt.ralof1);
-						break;
-					default:
-						show('Invalid command!');
-						break;
-				}
-			}
-		}
-		
-		if(startUp) {
-			switch(inputString) {
-				case 'guide':
-					show(msg[0].opt.guide);
-					break;
-				case 'begin':
-					startUp = false;
-					msg[0][inputString](); // equivalent to msg[0].begin();
-					break;
-				default:
-					show('Invalid command!');
-			}
-		}
-		//show('recieved enter');
-		*/
-		
 		 input.value = ''; // clear the input box
         updateView();        
     }
@@ -158,37 +91,9 @@ function isValid(userInput) {
 	return !(userInput == undefined);
 }
 
-//my idea with these two functions is to pass in what the user inputted and use that to know what message to display
-function examine() {
-	//show(msg);
+function showMsg(input, rm) {
+	show(rms[rm].msg[input])
 }
-
-function interact(userInput) {
-	show(rms[room].msg[userInput]);
-}
-
-//this method might be the solution because i can use the room number to change what output to give for the same commands
-/*
-function input(input, room) {
-	switch(input) {
-		case 'x':
-		case 'examine':
-		//what i want to do is just say something like show(msg.(room number).examine); so i dont have to assign
-		//each room a number manually. that would save a lot of work
-			switch(room) {
-				case 0:
-					show(msg.cart.examine);
-					break;
-				case 1:
-					show(msg.ridingIntoHelgen.examine);
-					break;
-				case 2:
-					show(msg.endOfTheLine.examine);
-					break;
-			}//examine room switch
-	}
-}
-*/
 
 // This might come in handy for quickly evaluating yes or no questions
 function isYes(inputText) {
@@ -273,7 +178,7 @@ function bestGameEver() {
 
 
 const rms = [
-	{
+	{//0
 		name: 'Menu',
 		img: 'menu.png',
 		dir: {
@@ -289,8 +194,11 @@ const rms = [
 			exiting: 'Exiting...',
 			cheat: 'Enabling cheats',
 		},
+		menu() {
+			show(rms[0].msg.main);
+		},
 	},
-	{ 
+	{ //1
 		name: 'Welcome',
 		img: 'welcome.png',
 		dir: {
@@ -305,34 +213,22 @@ const rms = [
 			no: 'Too bad, the adventure is upon us!',
 			yes: 'Excellent! Let us begin.',
 			guide: 'This is a text based adventure game, that means the way to interact with the game\n' +
-					'is by typing commands. Once you type "begin" you can type "menu" and then\n' +
-					'"controls" to get a list of commands.',
-			begin: '',
+					'is by typing commands. If you need a hint try typing "examine" and look for things' +
+					' to do in the message displayed.',
 		},
 		begin() {
 			console.log('Begin function has been called');
 			room++;
-			show(rms[room].msg.out);
+			//show(rms[room].msg.begin);
 		},
+		guide() {
+			//show(rms[room].msg.guide)
+		},
+		setRoom() {
+			//set room
+		}
 	},
 	/*
-	{ // 1
-		name: 'Menu',
-		img: 'menu.png',
-		dir: {
-			n: false,
-			s: false,
-			e: false,
-			w: false,
-		},
-		opt: {
-			main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
-			controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
-			'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
-			exiting: 'Exiting...',
-			cheat: 'Enabling cheats',
-		},
-	},
 	{ // 2
 		name: 'Scene 1',
 		img: '',
@@ -348,7 +244,7 @@ const rms = [
 		},
 	},
 	*/
-	{ // 3
+	{ // 2
 		name: 'Cart',
 		img: '',
 		dir: {
@@ -358,22 +254,22 @@ const rms = [
 			w: false,
 		},
 		msg: {
-			out:'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
+			begin:'You wake up sitting in the back of a horse drawn cart headed down a clunky cobblestone road.\n' +
 				'The air is cold and wet, you notice all you are wearing is rags\n' +
 				'There are three men in the cart with you. One is a blonde haired sturdy built nord.\n' +
 				'The second man is an imperial, much thinner and is looking down.\n' +
 				'The third is\'nt facing you so you cant make out the details of his face.\n' +
 				'He appears to be gagged.\n' +
 				'The nord looks like he wants to talk to you.',
-			ralof1: 'Ralof: Hey, you. You\'re finally awake. You were trying to cross the border,\n' +
-					'right? Walked right into that Imperial ambush, same as us, and that\n' +
+			talk: 'Ralof: Hey, you. You\'re finally awake. You were trying to cross the border, ' +
+					'right? Walked right into that Imperial ambush, same as us, and that ' +
 					'thief over there.\n' +
-					'You look over and see that the imperial has raised his head. He looks angry\n' +
-					'Lokir: Damn you Stormcloaks. Skyrim was fine until you came along. Empire was\n' +
-					'nice and lazy. If they hadn\'t been looking for you, I could\'ve stolen\n' +
+					'You look over and see that the imperial has raised his head. He looks angry ' +
+					'Lokir: Darn you Stormcloaks. Skyrim was fine until you came along. Empire was ' +
+					'nice and lazy. If they hadn\'t been looking for you, I could\'ve stolen ' +
 					'that horse and been half way to Hammerfell.\n' +
 					'He looks at you\n' +
-					'Lokir: You there. You and me -- we shouldn\'t be here. It\'s these\n' +
+					'Lokir: You there. You and me -- we shouldn\'t be here. It\'s these ' +
 					'Stormcloaks the Empire wants.\n' +
 					'Ralof: We\'re all brothers and sisters in binds now, thief.\n' +
 					'Imperial Soldier: Shut up back there!\n' +
@@ -381,7 +277,7 @@ const rms = [
 					'Lokir: And what\'s wrong with him?\n' +
 					'Ralof: Watch your tongue! You\'re speaking to Ulfric Stormcloak, ' +
 					'the true High King.\n' +
-					'Lokir: Ulfric? The Jarl of Windhelm? You\'re the leader of the rebellion. But if\n' +
+					'Lokir: Ulfric? The Jarl of Windhelm? You\'re the leader of the rebellion. But if ' +
 					'they captured you... Oh gods, where are they taking us?\n' +
 					'Ralof: I don\'t know where we\'re going, but Sovngarde awaits.\n' +
 					'Lokir: No, this can\'t be happening. This isn\'t happening.\n' +
@@ -392,10 +288,18 @@ const rms = [
 			wait:	'Waiting...',
 		},
 		talk() {
-			show(rms[room].msg.ralof1);
+			//show(rms[room].msg.talk);
+		},
+		examine() {
+			//show(rms[room].msg.examine);
+		},
+		wait() {
+			//show(rms[room].msg.wait);
+			room++;
+			//show(rms[room].msg.out);
 		},
 	},
-	{ // 4
+	{ // 3
 		name: 'Riding Into Helgen',
 		img: '',
 		dir: {
@@ -405,17 +309,20 @@ const rms = [
 			w: false,
 		},
 		msg: {		
-			out:	'You have finally made it to Helgen. The townspeople look on in silence as you\n' +
+			wait:	'You have finally made it to Helgen. The townspeople look on in silence as you\n' +
 					'and the other prisoners are carted to the town center',
 			examine:'Surrounding you are several Imperial soldiers armed with swords, bows, and magic.\n' +
 					'Making a run for it does not seem like a good option currently.' +
 					'Looks like all you can do now is wait for the end of the line.',
 			run:	'You jump out of the cart and run past a few guards; however, before you make it\n' +
 					'5 steps further an arrow takes you out and you go down without any fight.',
-			wait:	'Waiting...',
+		},
+		wait() {
+			room++;
+			enterName = true;
 		},
 	},
-	{ // 5
+	{ // 4
 		name: 'End of the Line',
 		img: '',
 		dir: {
@@ -425,7 +332,7 @@ const rms = [
 			w: false,
 		},
 		msg: {
-			out:	'Lokir: Wait... why are we stopping?\n' +
+			wait:	'Lokir: Wait... why are we stopping?\n' +
 				'Ralof: Why do you think? End of the line.\n' +
 				'Your cart stops in the town square where you see several things.\n' +
 				'An imperial legate stands next to a large man in a dark hood carrying a large axe.\n' +
@@ -455,10 +362,18 @@ const rms = [
 					' Do you run towards them?',
 			other:	'You try to move in a different direction, but are stopped by large pieces of the buildings collapsing' +
 					' around you. You take damage from the environment. The way to the tower is still open.',
-			toTower:'You run to the tower, dodging fire and stone as it flies around you.',
-		}
+			run:'You run to the tower, dodging fire and stone as it flies around you.',
+		},
+		nameEntered(entered) {
+			userName = entered;
+			showMsg('execution', room);
+		},
+		run() {
+			room++;
+			//nothing
+		},
 	},
-	{ // 6
+	{ // 5
 		name: 'Tower',
 		img: '',
 		dir: {
@@ -468,7 +383,8 @@ const rms = [
 			w: false,
 		},
 		msg: {			
-			out:'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
+			run:'You run to the tower, dodging fire and stone as it flies around you.' +
+				'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
 				'Ralof: ' + userName + ' you made it safely! We were just deciding what to do. Jarl Ulfric needs to get' +
 				'out of here.\n' +
 				'Ulfric: There is a passage under this keep. If we make a run for the other side of town...\n' +
@@ -484,7 +400,7 @@ const rms = [
 			examine2:	'There doesn\'t seem to be anything useful around. The only way out is upstairs.',
 		}
 	},
-	{ // 7
+	{ // 6
 		name: 'Tower Up',
 		img: '',
 		dir: {
