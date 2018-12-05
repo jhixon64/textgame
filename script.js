@@ -140,6 +140,42 @@ function updateStatsDisplay() {
 
 }
 
+function addToBag(item) {
+	var newItem = document.createElement('LI');
+	newItem.innerHTML = item;
+	document.getElementById('bagList').appendChild(newItem);
+}
+
+function removeFromBag(item) {	
+	const bag = document.getElementById('bagList');
+	for (let i = 0; i < bag.childNodes.length; i++) {
+		if (bag.childNodes[i].innerHTML == item) {
+			bag.removeChild(bag.childNodes[i]);
+			return;
+		}
+	}
+}
+
+/*
+function addLife() {
+  userLives++;
+  var heartIMG = document.createElement("img");
+  heartIMG.src = lifeURL;
+  heartIMG.className = 'heart';
+
+  var heart = document.createElement("LI");
+  heart.appendChild(heartIMG);
+  document.getElementById('lives').appendChild(heart);
+}
+
+
+function loseLife() {
+  userLives--;
+  const lives = document.getElementById('lives');
+  lives.removeChild(lives.childNodes[0]);
+}
+*/
+
 //call this when the player dies
 /*
 function healthOut() {
