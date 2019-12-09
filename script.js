@@ -6,7 +6,7 @@ var inMenu = false;
 var startUp = true;
 var deaths = 0;
 var room = 1; //maybe use this to keep track of what room im in, so that i can easily make a formula or something
-let userName = 'Bob';
+var userName = 'Bob';
 var enterName = false;
 
 function checkKeyUp(e) {
