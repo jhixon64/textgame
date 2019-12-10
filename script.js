@@ -109,6 +109,7 @@ function showViewport() {
     document.getElementById('viewport').style.display = 'block';
     document.getElementById('mapTab').classList.remove('activeTab');
     document.getElementById('viewportTab').classList.add('activeTab');
+	document.getElementById('viewportImg').src = 'images/' + rms[room].img;
 }
 
 function showMap() {
@@ -222,7 +223,7 @@ let rms = [
 	},
 	{ //1
 		name: 'Welcome',
-		img: 'welcome.png',
+		img: 'skyrim.jpg',
 		dir: {
 			n: false,
 			s: false,
