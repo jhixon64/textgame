@@ -32,6 +32,7 @@ function onEnter() {
         // here we should output something according to the game logic
 		if (enterName) {
 			rms[room].nameEntered(input.value);
+			//show("userName = " + userName);
 			enterName = false;
 		} else
 		//if inputted a valid command
@@ -46,6 +47,8 @@ function onEnter() {
 		} else {
 			show('Input was invalid, try again.');
 		}
+		
+		//show(rms[4].msg['execution']);
 		
 		
 		/*
@@ -66,7 +69,7 @@ function onEnter() {
 			healthOut();
 		}
 		*/
-		 input.value = ''; // clear the input box
+		input.value = ''; // clear the input box
         updateView();        
     }
 }
@@ -81,6 +84,11 @@ function updateView() {
 function show(output) {
     archive += output + '\n\n';
     updateView();
+}
+
+function showNoLine(output) {
+	archive += output;
+	updateView();
 }
 
 function isValid(userInput) {
@@ -188,7 +196,14 @@ function bestGameEver() {
     show(rms[1].msg.out);
 }
 
-const rms = [
+//I think that this gets initialized and then does not change ever. When I call a message with a variable in it
+//the message just spits out what the variable held initially. Unsure if I need to change the structure of the messages.
+
+//I did figure out how do display the username but only when I have a function to work in. I need to figure out how to
+//display the username after it has been changed without a function.
+
+//I made functions with the names of the next room and can probably use them for this purpose.
+let rms = [
 	{//0
 		name: 'Menu',
 		img: 'menu.png',
@@ -342,11 +357,13 @@ const rms = [
 				'The soldier then looks at you.\n' +
 				'Soldier: Wait... Who are you? What is your name?\n' +
 				'Enter your name:',
-			execution:	'Soldier: Well, ' + userName + ', walk over there with the others\n' +
+			execution1:	'Soldier: Well, ',
+			execution2:	', walk over there with the others\n' +
 						'In the distance, a sound unheard for thousands of years emerges from the mountains.\n' +
 						'Nobody seems to take much notice. The sound faintly echos off.\n' +
 						'You walk over and watch as each prisoner is slowly called up, eliminated, and tossed to the side.\n' +
-						'Next: ' + userName + '!\n' +
+						'Next: ',
+			execution3:	'!\n' +
 						'You walk up, they force you down into a kneeling position with your head positioned on the block. ' +
 						'The man raises his axe and prepares to slam it down.\n' +
 						'Suddenly a ferocious roar pushes everyone to the ground.\n' +
@@ -360,7 +377,12 @@ const rms = [
 		},
 		nameEntered(entered) {
 			userName = entered;
-			showMsg('execution', room);
+			//show("userName after nameEntered() = " + userName);
+			showNoLine(rms[room].msg.execution1);
+			showNoLine(userName);
+			showNoLine(rms[room].msg.execution2);
+			showNoLine(userName);
+			showMsg('execution3', room);
 		},
 		run() {
 			room++;
@@ -376,6 +398,7 @@ const rms = [
 			e: false,
 			w: false,
 		},
+		//Never finished restructuring this part of the code I think. It is broken in the output (doesnt show).
 		msg: {			
 			run:'You run to the tower, dodging fire and stone as it flies around you.' +
 				'You make it into the tower safely. You are surrounded by the other prisoners, including Ralof and Ulfric.\n' +
