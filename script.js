@@ -205,8 +205,8 @@ function bestGameEver() {
 //I made functions with the names of the next room and can probably use them for this purpose.
 let rms = [
 	{//0
-		name: 'Menu',
-		img: 'menu.png',
+		name: 'Game Over',
+		img: '',
 		dir: {
 			n: false,
 			s: false,
@@ -214,14 +214,10 @@ let rms = [
 			w: false,
 		},
 		msg: {
-			main: 'This is the main menu:\nControls: show controls\nExit: exit the menu and continue playing',
-			controls: 'Controls are:\n"north", "south", "east", "west":\nMoves player in that direction (not working yet)\n' + 
-			'"menu":\nDisplays the menu\n"examine"/"x":\nExamines whatever you specify',
-			exiting: 'Exiting...',
-			cheat: 'Enabling cheats',
+			out: 'Game Over! Reload the page to start over.',
 		},
-		menu() {
-			show(rms[0].msg.main);
+		gameOver() {
+			show(rms[0].msg.out);
 		},
 	},
 	{ //1
@@ -267,7 +263,7 @@ let rms = [
 				'The air is cold and wet, you notice all you are wearing is rags\n' +
 				'There are three men in the cart with you. One is a blonde haired sturdy built nord.\n' +
 				'The second man is an imperial, much thinner and is looking down.\n' +
-				'The third is\'nt facing you so you cant make out the details of his face.\n' +
+				'The third isn\'t facing you so you cant make out the details of his face.\n' +
 				'He appears to be gagged.\n' +
 				'The nord looks like he wants to talk to you.',
 			talk: 'Ralof: Hey, you. You\'re finally awake. You were trying to cross the border, ' +
@@ -326,6 +322,7 @@ let rms = [
 			run:	'You jump out of the cart and run past a few guards; however, before you make it\n' +
 					'5 steps further an arrow takes you out and you go down without any fight.',
 		},
+		
 		wait() {
 			room++;
 			enterName = true;
@@ -383,6 +380,9 @@ let rms = [
 			showNoLine(rms[room].msg.execution2);
 			showNoLine(userName);
 			showMsg('execution3', room);
+		},
+		wait() {
+			room == 0;
 		},
 		run() {
 			room++;
