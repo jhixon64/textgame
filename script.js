@@ -104,6 +104,7 @@ function isYes(inputText) {
     return inputText.toLowerCase() == 'y' || inputText.toLowerCase() == 'yes';
 }
 
+//Function to update the viewport. Updates the image on the fifth document get element.
 function showViewport() {
     document.getElementById('map').style.display = 'none';
     document.getElementById('viewport').style.display = 'block';
